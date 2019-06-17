@@ -1,0 +1,46 @@
+<html>
+<head><title>Using PoMS's SPARQL Interface for data</title></head>
+<body>
+<h3>Using PoMS's SPARQL Interface for data</h3>
+<hr />
+<p>You can find <a href="mapapp.py">here</a> a small Python script which demonstrates how the PoMS SPARQL interface could be used to fetch data
+for presentation in a way different from that which is readily available from the PoMS's browser-oriented web application.</p>
+<p>In this example, a SPARQL query is run to fetch all places involved as land in legal charters that have women as both grantor and
+beneficiary.  The script uses the data the query generates (including the latitude and longitude coordinates for these places, plus a place name)
+to generate a map (using the <a href="https://leafletjs.com/">Leaflet</a> mechanisms). To run it yourself:</p>
+<ul>
+<li>Be aware that the script was written to run in Python 2.7.  It might need changes to work in Python 3.</li>
+<li>The script creates a file. The file name and file path that work on your machine must be set in the script by setting values
+for the variables path and filename</li>
+<li>The script generates an HTML page. After the script has been run direct your browser to that page to see the map.</li>
+</ul>
+<p>The script is generalized enough that a different query can be easily substituted to generate a different map. The script looks for variables 
+called label, lat and long for values to use for each place's label, and for each latitude and longitude. The values from other variables displayed
+by the query are shown in a popup that is displayed on the map.</p>
+<p>So that you can see what the script creates before you run it yourself, the page that the script generates is included in this folder, and is available for viewing <a href="mapapp1.html">here</a>.</p>
+<p>If you wish you can try replacing the query incorporated in the script with the following one, which plots all the places that are involved in legal charters where the language of the charter
+is Gaelic.
+</p>
+<pre>
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+select ?source ?sourceName ?factoid ?factName ?possession ?possName ?place ?label ?lat ?long
+where {
+  ?source vocab:hasLanguage &lt;http://www.poms.ac.uk/rdf/entity/Language/Gaelic&gt;
+     rdfs:label ?sourceName.
+  ?factoid vocab:hasSource ?source;
+     rdfs:label ?factName;
+     a vocab:TransactionFactoid.
+  ?possref vocab:hasFactoid ?factoid;
+     vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+     vocab:hasName ?possName;
+     vocab:hasPlace ?place.
+  ?place vocab:hasName ?label;
+      vocab:hasGeographicLatitude ?lat;
+      vocab:hasGeographicLongitude ?long.
+}</pre>
+<hr />
+<p>John Bradley, KDL and DDH, King's College London, June 2016</p>
+</body>
+</html>

@@ -1,0 +1,1537 @@
+@prefix : <http://www.poms.ac.uk/rdf/ontology#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix opf: <https://github.com/johnBradley501/FPO/raw/master/fpo.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.poms.ac.uk/rdf/ontology#> a owl:Ontology ;
+	rdfs:label "Ontology for PoMS data" ;
+	owl:versionInfo "1.0"^^xsd:decimal ;
+	dc:description "An ontology for the data created by the People of Medieval Scotland project (see http://www.poms.ac.uk).  The major data repository for the work of the PoMS project was a relational database.  This ontology provides a definition of an RDF expression of the data in that database." ;
+	dc:rights "Creative Commons Attribution-NonCommercial 4.0 International License." ;
+	dc:contributor "Matthew Hammond, Dauvit Broun" ;
+	rdfs:comment "An ontology for the data created by the People of Medieval Scotland project (see http://www.poms.ac.uk).  The major data repository for the work of the PoMS project was a relational database.  This ontology provides a definition for the RDF expression of the data in that database." ;
+	dc:creator "John Bradley (King's Digital Lab, King's Collage London)" ;
+	dc:title "Ontology for PoMS data" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasDescription
+
+:hasDescription a owl:AnnotationProperty ;
+	rdfs:comment "Description or summary of the contents of the document" ;
+	rdfs:subPropertyOf rdfs:comment ;
+	rdfs:range xsd:string ;
+	rdfs:domain :AuthorityList .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPersonDescription
+
+:hasPersonDescription a owl:AnnotationProperty ;
+	rdfs:comment "provides biographical information" ;
+	rdfs:subPropertyOf rdfs:comment ;
+	rdfs:range xsd:string ;
+	rdfs:domain :Person .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Datatypes
+# #
+# #################################################################
+# 
+# 
+# http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> a rdfs:Datatype ;
+	rdfs:comment "Asserts that the data present gives geographic data using wktLiteral notation.  In PoMS only georgraphic points are given, e.g. â€œPOINT(55.953 -3.189)â€. Rdf4jâ€™s implementation of GeoSPARQL, available in this server, supportss wktLiteral format. (See pages for GeoSPARQL at GitHub and rdfj4 itself)." .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasCharterType
+
+:hasCharterType a owl:ObjectProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range :CharterType ;
+	rdfs:comment "Charter type here refers to the kind of transactive document, such as a charter, more strictly defined, a diploma, a brieve, an agreement, etc." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasCommonBurden
+
+:hasCommonBurden a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :CommonBurden ;
+	rdfs:comment "indicates that the transaction carries with it common burdens, such as common army service" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasExemption
+
+:hasExemption a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :ExemptionType ;
+	rdfs:comment "indicates that the transaction carries with it an exemption, such as freedom from common burdens" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFactoid
+
+:hasFactoid a owl:ObjectProperty ;
+	owl:inverseOf opf:hasReference ;
+	rdfs:domain :Reference ;
+	rdfs:range :Factoid ;
+	rdfs:comment "This reference comes from this particular ;Factoid" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromSeason
+
+:hasFromSeason a owl:ObjectProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range :Season ;
+	rdfs:comment "For date ranges, the season of the earlier date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasGrantorCategory
+
+:hasGrantorCategory a owl:ObjectProperty ;
+	rdfs:domain :Source ;
+	rdfs:range :GrantorCategory ;
+	rdfs:comment "Associates this source with a classification sscheme called \"Grantor Category\" in PoMS. Examples include \"Agreements: religious and lay\", \"Burgesses\", \"Non-Scottish monks\", etc." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLanguage
+
+:hasLanguage a owl:ObjectProperty ;
+	rdfs:domain :Source ;
+	rdfs:range :Language ;
+	rdfs:comment "the language of the document text, usually Latin" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLegalPertinent
+
+:hasLegalPertinent a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :LegalPertinent ;
+	rdfs:comment "indicates that the transaction carries with it legal or jurisdictional rights, such as that of ordeal pit and gallows" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasMedievalGaelicForename
+
+:hasMedievalGaelicForename a owl:ObjectProperty ;
+	rdfs:domain :Person ;
+	rdfs:range :MedievalGaelicForename ;
+	rdfs:comment "A standardised medieval Scots Gaelic form of the forename" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasMetatype
+
+:hasMetatype a owl:ObjectProperty ;
+	rdfs:domain :RelationshipType ;
+	rdfs:range :RelationshipMetaType ;
+	rdfs:comment "Relationships fall into three broad categories: familial, employment, and tenurial/landholding" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasModernGaelicForename
+
+:hasModernGaelicForename a owl:ObjectProperty ;
+	rdfs:domain :Person ;
+	rdfs:range :ModernGaelicForename ;
+	rdfs:comment "The standardised modern Scots Gaelic form of the forename" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasNominalRender
+
+:hasNominalRender a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :NominalRenderType ;
+	rdfs:comment "Includes nominal renders or _blanchferme_, such as spices" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasOption
+
+:hasOption a owl:ObjectProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range :CharterOption ;
+	rdfs:comment "has an optional characteristic associated with this charter. One of the instances of :CharterOption" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasOwner
+
+:hasOwner a owl:ObjectProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range :Person ;
+	rdfs:comment "The owner of the matrix; normally the person indicated on the seal" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasParent
+
+:hasParent a owl:ObjectProperty ;
+	rdfs:domain :ThingOrganisedHierarchically ;
+	rdfs:range :ThingOrganisedHierarchically .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPlace
+
+:hasPlace a owl:ObjectProperty ;
+	rdfs:domain :ThingReferencingPlace ;
+	rdfs:range :Place ;
+	rdfs:comment "The :Place being referenced." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPlaceFielty
+
+:hasPlaceFielty a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasPlace ;
+	rdfs:domain :RelationshipFactoid ;
+	rdfs:range :Place ;
+	rdfs:comment "for relationships of fealty, the place where the act of fealty took place" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasRelatedPlace
+
+:hasRelatedPlace a owl:ObjectProperty ;
+	rdfs:subPropertyOf :hasPlace ;
+	rdfs:domain :Person ;
+	rdfs:range :Place ;
+	rdfs:comment "Indicates the place entity to which the person entity may be linked" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasRelationship
+
+:hasRelationship a owl:ObjectProperty ;
+	rdfs:domain :RelationshipFactoid ;
+	rdfs:range :RelationshipType ;
+	rdfs:comment "the type of relationship" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasRenderDate
+
+:hasRenderDate a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :RenderDate ;
+	rdfs:comment "the annual dates, often feast days, on which renders were to be made to lord" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasReturnMilitary
+
+:hasReturnMilitary a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :ReturnMilitary ;
+	rdfs:comment "Includes military returns for property holding, such as knight service" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasReturnRender
+
+:hasReturnRender a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :ReturnRender ;
+	rdfs:comment "Includes information on returns or renders to be made for property holding" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasRole
+
+:hasRole a owl:ObjectProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range :Role ;
+	rdfs:comment "The role the person has in the factoid, e.g. Primary, Secondary, Witness, Signatory, etc." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasShape
+
+:hasShape a owl:ObjectProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range :MatrixShape ;
+	rdfs:comment "Shape of the matrix and thus the seal; usually round or pointed oval" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSicutClause
+
+:hasSicutClause a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :SicutClauseType ;
+	rdfs:comment "Includes a _sicut_ clause, indicating property to be held on same terms as others" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSource
+
+:hasSource a owl:ObjectProperty ;
+	rdfs:domain :Factoid ;
+	rdfs:range :Source ;
+	rdfs:comment "Indicates that the factoid has a source" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSpiritualBenefit
+
+:hasSpiritualBenefit a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :ProAnimaGenericType ;
+	rdfs:comment "Indicates for whom prayers were to be made" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasTenendasClause
+
+:hasTenendasClause a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :TenendasClause ;
+	rdfs:comment "Includes a _tenendas_ or holding clause" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasTitleType
+
+:hasTitleType a owl:ObjectProperty ;
+	rdfs:domain :TitleOccupationFactoid ;
+	rdfs:range :TitleType ;
+	rdfs:comment "Indicates the type of title or occupation" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToSeason
+
+:hasToSeason a owl:ObjectProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range :Season ;
+	rdfs:comment "For date ranges, the season of the later date phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasTransactionOption
+
+:hasTransactionOption a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :TransactionOption ;
+	rdfs:comment "Associates one or more :TransactionOption to this transaction. See the list of possible options as instnaces of :TransactionOption" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isTransactionType
+
+:isTransactionType a owl:ObjectProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range :TransactionType ;
+	rdfs:comment "indicates the type of the transaction, such as gift, sale or agreement" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#linkedToPlace
+
+:linkedToPlace a owl:ObjectProperty ;
+	rdfs:domain :Person ;
+	rdfs:range :Place ;
+	rdfs:comment "Indicates the place entity to which the person entity may be linked" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#referencesPerson
+
+:referencesPerson a owl:ObjectProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range :Person ;
+	rdfs:comment "The link to :Person being referenced" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#referencesPossession
+
+:referencesPossession a owl:ObjectProperty ;
+	rdfs:domain :PossessionReference ;
+	rdfs:range :Possession ;
+	rdfs:comment "The link to :Possession being referenced" .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasReference
+
+opf:hasReference a owl:ObjectProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasAssociatedWebpage
+
+:hasAssociatedWebpage a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithAssociatedWebpage ;
+	rdfs:range xsd:anyURI ;
+	rdfs:comment "indicates that a webpage in the browser-friendly PoMS website exists for this item, and gives, as object, its URL." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasCatalogue
+
+:hasCatalogue a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Classification system for seal matrices in PoMS" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasDateString
+
+:hasDateString a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Includes dates used as part of a person's headline name form" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasDatingNotes
+
+:hasDatingNotes a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Notes explaining how date was arrives at" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasDoctypeNotes
+
+:hasDoctypeNotes a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:string ;
+	rdfs:comment "any further notes about the document type or bibliographical data" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasExtra
+
+:hasExtra a owl:DatatypeProperty ;
+	rdfs:domain :PossessionPrivilege ;
+	rdfs:range xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFirmDate
+
+:hasFirmDate a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates the thing can be assigned to a single specific date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFirmDayOnly
+
+:hasFirmDayOnly a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates the thing has a weekday but no date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitEndPost
+
+:hasFloruitEndPost a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "indicates a post-modifier to the floruit range end year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitEndPre
+
+:hasFloruitEndPre a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "indicates a pre-modifier to the floruit range end year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitEndYr
+
+:hasFloruitEndYr a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Indicates the floruit range end year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitStartPost
+
+:hasFloruitStartPost a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "indicates a post-modifier to the floruit range start year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitStartPre
+
+:hasFloruitStartPre a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "indicates a pre-modifier to the floruit range start year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFloruitStartYr
+
+:hasFloruitStartYr a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Indicates the floruit range start year" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasForename
+
+:hasForename a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The first name of the person" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromDay
+
+:hasFromDay a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the date of the earlier date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromModifier
+
+:hasFromModifier a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Modifier before date phrase of earlier date, e.g. \"circa\"" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromModifier2
+
+:hasFromModifier2 a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Modifier of date phrase: mid, early, late" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromMonth
+
+:hasFromMonth a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the month of the earlier date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromWeekday
+
+:hasFromWeekday a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the weekday of the earlier date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasFromYear
+
+:hasFromYear a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the year of the earlier date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasGeoData
+
+:hasGeoData a owl:DatatypeProperty ;
+	rdfs:domain :Place ;
+	rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> ;
+	rdfs:comment "A geographic point representing the loication of the Place.  Only points are given, even for things, like counties, that we might consider to be shapes. The notation used is wktLiteral, which operates with rdf4j's GeoSPARQL implementation." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasGeographicLatitude
+
+:hasGeographicLatitude a owl:DatatypeProperty ;
+	rdfs:domain :Place ;
+	rdfs:range xsd:double ;
+	rdfs:comment "The latitute of geographic point representing the loication of the Place.  Only points are given, even for things, like counties, that we might consider to be shapes." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasGeographicLongitude
+
+:hasGeographicLongitude a owl:DatatypeProperty ;
+	rdfs:domain :Place ;
+	rdfs:range xsd:double ;
+	rdfs:comment "The longitude of geographic point representing the loication of the Place.  Only points are given, even for things, like counties, that we might consider to be shapes." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasHammondExt
+
+:hasHammondExt a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string ;
+	rdfs:comment "a letter, used to indicate an additional document, such as H1/53/145A, or indicating the two sides of the same chirograph" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasHammondNumb1
+
+:hasHammondNumb1 a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "part one of the three-part Hammond number, indicating whether the document is royal (H1), ecclesiastical (H2), private (H3), or two-sided (H4)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasHammondNumb2
+
+:hasHammondNumb2 a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "part two of the three-part Hammond number, indicating the series of documents, such as bishops of St Andrews or earls of Fife" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasHammondNumb3
+
+:hasHammondNumb3 a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "part three of the tripartite H-number, indicating the unique number of the document" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasHammondNumber
+
+:hasHammondNumber a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The Hammond Number in display format" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasID
+
+:hasID a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithID ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "The ID associated with an instance of class :ThingWithID.  All PoMS classes that derive from DB tables are subclasses of :ThingWithID, so all instances of all classes have a value for :hasID. In the database form of the PoMS data, this is the record's key." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasIdentifier
+
+:hasIdentifier a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Headline form of matric owner's name" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasImageDesc
+
+:hasImageDesc a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Description of the image on the front of the seal" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasImageDescRev
+
+:hasImageDescRev a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Description of the image on the back of the seal" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLegendObv
+
+:hasLegendObv a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Text of the legend (writing) on obverse (front)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLegendRev
+
+:hasLegendRev a owl:DatatypeProperty ;
+	rdfs:domain :Matrix ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Text of the legend (writing) on reverse (back)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLevel
+
+:hasLevel a owl:DatatypeProperty ;
+	rdfs:domain :ThingOrganisedHierarchically ;
+	rdfs:range xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLft
+
+:hasLft a owl:DatatypeProperty ;
+	rdfs:domain :ThingOrganisedHierarchically ;
+	rdfs:range xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasLinkToPONE
+
+:hasLinkToPONE a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:anyURI ;
+	rdfs:comment "provides the URL to the webpage about the same person in the PoNE database (http://www.pone.ac.uk)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasName
+
+:hasName a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithName ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The Name of the Thing" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasNameExtension
+
+:hasNameExtension a owl:DatatypeProperty ;
+	rdfs:domain :PossessionPrivilege ;
+	rdfs:range xsd:string .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasNameTranslation
+
+:hasNameTranslation a owl:DatatypeProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range xsd:string .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasNotes
+
+:hasNotes a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithNotes ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The notes as a string." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasOfString
+
+:hasOfString a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates the \"of\" in toponymic surnames, or elements like \"lord of\"" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasOrderNo
+
+:hasOrderNo a owl:DatatypeProperty ;
+	rdfs:domain :ThingThatCanBeOrdered ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "The numeric ordering information" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasOriginalText
+
+:hasOriginalText a owl:DatatypeProperty ;
+	rdfs:domain :Reference ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The textual source's name for the person or possession at this spot in the text" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPatronym
+
+:hasPatronym a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates the patronymic or matronyic in a name phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPersonDisplayName
+
+:hasPersonDisplayName a owl:DatatypeProperty ;
+	rdfs:subPropertyOf :hasName ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates the display name or \"headline form\" for a person" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPlaceAndInst
+
+:hasPlaceAndInst a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates a place or institutional name as part of name phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPlaceDateDoc
+
+:hasPlaceDateDoc a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:string ;
+	rdfs:comment "the place given in the dating clause of the document, spelled as in the text" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPlaceDateModern
+
+:hasPlaceDateModern a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:string ;
+	rdfs:comment "the modern, standardised name of the place which the text records for its production" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasPossibleDateRange
+
+:hasPossibleDateRange a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithPossibleDateRange ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The string that provides, in human readable form, a date range." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasProbableDate
+
+:hasProbableDate a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates further information narrowing down the likely date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasProblems
+
+:hasProblems a owl:DatatypeProperty ;
+	rdfs:domain :Factoid ;
+	rdfs:range xsd:string .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasRght
+
+:hasRght a owl:DatatypeProperty ;
+	rdfs:domain :ThingOrganisedHierarchically ;
+	rdfs:range xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSearchSurname
+
+:hasSearchSurname a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates the surname form as created for the faceted browser search" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasShortDesc
+
+:hasShortDesc a owl:DatatypeProperty ;
+	rdfs:domain :Factoid ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates that the factoid has a description" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSonOf
+
+:hasSonOf a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Indicates \"son of\" or other family relationship, as part of name phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSourceForDataEntry
+
+:hasSourceForDataEntry a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string ;
+	rdfs:comment "reference for the edition of the source text used in data entry" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSourceRef
+
+:hasSourceRef a owl:DatatypeProperty ;
+	rdfs:domain :Factoid ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Reference of the source of the factoid" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSourceTrad
+
+:hasSourceTrad a owl:DatatypeProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string ;
+	rdfs:comment "the most commonly-recognised traditional (usually printed) reference number for the source" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasStandardMedievalForm
+
+:hasStandardMedievalForm a owl:DatatypeProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range xsd:string .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasSurname
+
+:hasSurname a owl:DatatypeProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Surname, by-name, or other second name as part of name phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToDay
+
+:hasToDay a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the date of the later date phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToModifier
+
+:hasToModifier a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Modifier before date phrase of earlier date, e.g. \"circa\"" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToModifier2
+
+:hasToModifier2 a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Modifier of date phrase: mid, early, late" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToMonth
+
+:hasToMonth a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the month of the later date phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToWeekday
+
+:hasToWeekday a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the weekday of the later date phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasToYear
+
+:hasToYear a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "For date ranges, the year of the later date phrase" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasTree
+
+:hasTree a owl:DatatypeProperty ;
+	rdfs:domain :ThingOrganisedHierarchically ;
+	rdfs:range xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#hasUtilTopAncestor
+
+:hasUtilTopAncestor a owl:DatatypeProperty ;
+	rdfs:domain :Place , :PossessionPrivilege ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Text of the top item in the Place tree for this item: . For most this is usually name of county or country. however, privileges are categorised not by geographical place but by thematic type" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isBothAddressorsMentioned
+
+:isBothAddressorsMentioned a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with multiple addressors" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isByAnotherDivineInvocation
+
+:isByAnotherDivineInvocation a owl:DatatypeProperty ;
+	rdfs:domain :TitleOccupationFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Title said to be held by some other divine invocation" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isByGraceOfGod
+
+:isByGraceOfGod a owl:DatatypeProperty ;
+	rdfs:domain :TitleOccupationFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Title said to be held by the grace of God (_Dei gratia_)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isChirograph
+
+:isChirograph a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates a two-sided document with interlinking teeth, also called an indenture" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isConveth
+
+:isConveth a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction relative to the dues known as conveth or _coinnmed_" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isCorroborationSealing
+
+:isCorroborationSealing a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with a sealing clause or similar corroboration" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isDare
+
+:isDare a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with the Latin dispositive verb _dare_" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isDupOrigContemp
+
+:isDupOrigContemp a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates duplicate contemporary single sheets produced at the time of the transaction" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isDuporignoncontemp
+
+:isDuporignoncontemp a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates duplicate single sheets produced non-contemporaneously" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isEitherOr
+
+:isEitherOr a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates two possible dates or date ranges" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isExchange
+
+:isExchange a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with an exchange of property" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isFirmDate
+
+:isFirmDate a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates the date is a firm date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isGenericWitnesses
+
+:isGenericWitnesses a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isLetterPatent
+
+:isLetterPatent a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates an open document witnessed usually only by the grantor" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isMalediction
+
+:isMalediction a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with a malediction or curse" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isOrigContemp
+
+:isOrigContemp a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates a contemporary single sheet produced at the same time as the event the text records" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isOrignoncontemp
+
+:isOrignoncontemp a owl:DatatypeProperty ;
+	rdfs:domain :Charter ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates a single sheet document produced after the events described in the text" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isPerambulation
+
+:isPerambulation a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction with a perambulation clause" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isPreviousCharterMention
+
+:isPreviousCharterMention a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction mentioning a previous charter" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isPreviousChirographmention
+
+:isPreviousChirographmention a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction mentioning a previous chirograph" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isPrimary
+
+:isPrimary a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a primary transaction, contemporaneous with document" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isSpiritualBenefit
+
+:isSpiritualBenefit a owl:DatatypeProperty ;
+	rdfs:domain :Role ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates whether the role is a spiritual benefit" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isTestemeipso
+
+:isTestemeipso a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction in a self-witnessed document" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isUndated
+
+:isUndated a owl:DatatypeProperty ;
+	rdfs:domain :ThingWithDatingInformation ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates the document is undated or undateable" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isVerbsNotSpecified
+
+:isVerbsNotSpecified a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "Indicates a transaction in which the dispositive verbs are missing or unclear" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#isWarrandice
+
+:isWarrandice a owl:DatatypeProperty ;
+	rdfs:domain :TransactionFactoid ;
+	rdfs:range xsd:boolean ;
+	rdfs:comment "indicates a transaction with a warrandice or warranty clause" .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://www.poms.ac.uk/rdf/ontology#AttachmentType
+
+:AttachmentType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Attachment of seal to document, e.g. by ribbon or tongue" ;
+	rdfs:label "AttachmentType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#AuthorityList
+
+:AuthorityList a owl:Class ;
+	rdfs:subClassOf :ThingWithID , :ThingWithName ;
+	rdfs:comment "a list of things that might be thought of as functioning like what in library science is called an Authority File." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Charter
+
+:Charter a owl:Class ;
+	rdfs:subClassOf :Source , :ThingReferencingPlace ;
+	rdfs:comment "Charter in this context is used to refer to any kind of administrative or transactive document." ;
+	rdfs:label "Charter" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#CharterOption
+
+:CharterOption a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Optional information: e.g. is source a Letter Patent, a Chirograph, a duplicate original, etc. More than one of these options can be associated with any particular charter." ;
+	rdfs:label "Document Option" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#CharterType
+
+:CharterType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Type of document, such as charter, strictly defined, a diploma, a brieve, an agreement, etc." ;
+	rdfs:label "CharterType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#CommonBurden
+
+:CommonBurden a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Burdens owed commonly in respect of landholding, usually aids, works, army service" ;
+	rdfs:label "Common Burden" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ExemptionType
+
+:ExemptionType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Exemptions from burdens and service owed for landholding" ;
+	rdfs:label "ExemptionType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Factoid
+
+:Factoid a owl:Class ;
+	rdfs:subClassOf :ThingReferencingPlace , :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , opf:Factoid ;
+	rdfs:comment "In PoMS a :Factoid represents a place in a historical source (usually a legal charter) where something is said about a person or a group persons.  This is semantically the idea behind the opf:Factoid as well, thus this :Factoid class is a subclass of opf:Factoid." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#FactoidInvolvingPossession
+
+:FactoidInvolvingPossession a owl:Class ;
+	rdfs:subClassOf :Factoid ;
+	rdfs:comment "Factoids that involve one or more possessions. There are two kinds : (i) :PossessionFactoid represents a simple assertion that someone owned something;  and (ii) :TransactionFactoid represents a legal transaction between people of a possession." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#GrantorCategory
+
+:GrantorCategory a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Series of documents based on category of grantors, e.g., earls of Fife, papal judges delegate" ;
+	rdfs:label "GrantorCategory" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Group
+
+:Group a owl:Class ;
+	rdfs:subClassOf :Person ;
+	rdfs:comment "a group of people which form an entity which is referenced in a charter. E.g., a monastary, or a city." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#HistoricalFemale
+
+:HistoricalFemale a owl:Class ;
+	rdfs:subClassOf :Person ;
+	rdfs:comment "An historical woman referred to in a charter." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#HistoricalInstitution
+
+:HistoricalInstitution a owl:Class ;
+	rdfs:subClassOf :Group ;
+	rdfs:comment "An institution that is referred to in a charter: mostly religious institutions." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#HistoricalMale
+
+:HistoricalMale a owl:Class ;
+	rdfs:subClassOf :Person ;
+	rdfs:comment "An historical man referred to in a charterl." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#HistoricalMixedGenderGroup
+
+:HistoricalMixedGenderGroup a owl:Class ;
+	rdfs:subClassOf :Group ;
+	rdfs:comment "A group (often rather generic) of people -- male and female -- that is referred to in a charter." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Language
+
+:Language a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Language of the text, most frequently Latin" ;
+	rdfs:label "Language" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#LegalPertinent
+
+:LegalPertinent a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Legal and jurisprudential terms on which land was held, such as right to punish criminals" ;
+	rdfs:label "LegalPertinents" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Matrix
+
+:Matrix a owl:Class ;
+	rdfs:subClassOf :Source ;
+	rdfs:comment "The metal device which was used to produce wax seals" ;
+	rdfs:label "Matrix" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#MatrixShape
+
+:MatrixShape a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Shape of the matrix and thus the seal; usually round or pointed oval" ;
+	rdfs:label "Matrix Shape" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#MedievalGaelicForename
+
+:MedievalGaelicForename a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Standardised medieval spelling of Gaelic personal names (eg Maolalaigh)" ;
+	rdfs:label "MedievalGaelicForename" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ModernGaelicForename
+
+:ModernGaelicForename a owl:Class ;
+	rdfs:subClassOf :AuthorityList , :MedievalGaelicForename ;
+	rdfs:comment "Standardised modern spelling of Gaelic personal names" ;
+	rdfs:label "ModernGaelicforename" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#NominalRenderType
+
+:NominalRenderType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Items used for conveyance by blanchferme, such as spices, spurs, gloves, etc." ;
+	rdfs:label "NominalRenderType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Person
+
+:Person a owl:Class ;
+	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithID , :ThingWithPossibleDateRange , opf:Person ;
+	rdfs:comment "An historical person or person-like entity that appears in the database" ;
+	rdfs:label "Person" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PersonReference
+
+:PersonReference a owl:Class ;
+	rdfs:subClassOf :Reference , :ThingThatCanBeOrdered , opf:PersonReference ;
+	rdfs:comment "A reference to a :Person within a :Factoid" ;
+	rdfs:label "Person Reference" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Place
+
+:Place a owl:Class ;
+	rdfs:subClassOf :ThingOrganisedHierarchically , :ThingWithAssociatedWebpage , :ThingWithID , :ThingWithNotes ;
+	rdfs:comment "a geographic place used in the database" ;
+	rdfs:label "Place" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Possession
+
+:Possession a owl:Class ;
+	rdfs:subClassOf :ThingOrganisedHierarchically , :ThingWithID ;
+	rdfs:comment "umbrella term for property and privileges held by people in database" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionAlms
+
+:PossessionAlms a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "general or unspecified gifts of alms" ;
+	rdfs:label "Possession (Alms)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionFactoid
+
+:PossessionFactoid a owl:Class ;
+	rdfs:subClassOf :FactoidInvolvingPossession , opf:PossessionFactoid ;
+	rdfs:comment "the unique factoid embedding a specific possession in a transaction or source" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionGeneral
+
+:PossessionGeneral a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "general or unspecified possessions" ;
+	rdfs:label "Possession (General)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionLand
+
+:PossessionLand a owl:Class ;
+	rdfs:subClassOf :Possession , :ThingReferencingPlace ;
+	rdfs:comment "specific lands or churches" ;
+	rdfs:label "Possession(Land)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionObject
+
+:PossessionObject a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "physical objects, such as books, clothes, or weapons" ;
+	rdfs:label "Possession (Object)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionOffice
+
+:PossessionOffice a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "offices, such as sheriffship, keepership of a castle, or forester" ;
+	rdfs:label "Possession (Office)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionPrivilege
+
+:PossessionPrivilege a owl:Class ;
+	rdfs:subClassOf :Possession , :ThingReferencingPlace , :ThingWithNotes ;
+	rdfs:comment "a broad assortment of rights and liberties, such as freedom to travel, commercial privileges, patronage of parish church, and common pasture" ;
+	rdfs:label "Possession (Privilege)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionReference
+
+:PossessionReference a owl:Class ;
+	rdfs:subClassOf :Reference ;
+	rdfs:comment "A reference to a :Possession within a :Factoid" ;
+	rdfs:label "Possession Reference" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionRevenuesInKind
+
+:PossessionRevenuesInKind a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "revenues in kind, such as grain, cheese, hides, livestock, fish, etc." ;
+	rdfs:label "Posssession (Revenue in Kind)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionRevenuesInSilver
+
+:PossessionRevenuesInSilver a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "revenues in silver, given in pounds, shillings and pence, or in marks" ;
+	rdfs:label "Possession (Revenue in Silver)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#PossessionUnfreePerson
+
+:PossessionUnfreePerson a owl:Class ;
+	rdfs:subClassOf :Possession ;
+	rdfs:comment "unfree individuals (serfs or neyfs) treated in transactions as possessions" ;
+	rdfs:label "Possession (Unfree Person)" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ProAnimaGenericType
+
+:ProAnimaGenericType a owl:Class ;
+	rdfs:subClassOf :AuthorityList , :ThingThatCanBeOrdered ;
+	rdfs:comment "unnamed people for whom prayers were to be made, such as family members" ;
+	rdfs:label "ProAnima Generic Type" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Reference
+
+:Reference a owl:Class ;
+	rdfs:subClassOf :ThingWithID , opf:Reference ;
+	rdfs:comment "In PoMS, a reference provides a link to a specific :Person or :Possession that is referenced in a :Factoid" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#RelationshipFactoid
+
+:RelationshipFactoid a owl:Class ;
+	rdfs:subClassOf :Factoid , opf:RelationshipFactoid ;
+	rdfs:comment "the specific factoid showing a relationship between, and this linking, two or more individuals" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#RelationshipMetaType
+
+:RelationshipMetaType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Relationsips fall into three broad categories: familial, employment, and tenurial/landholding" ;
+	rdfs:label "Relationship MetaType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#RelationshipType
+
+:RelationshipType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "the exact type of relationship, such as 'mother of', 'clerk of', 'lord of'" ;
+	rdfs:label "RelationshipType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#RenderDate
+
+:RenderDate a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "the date of the annual render, such as Martinmas or Pentecost" ;
+	rdfs:label "Render Date" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ReturnMilitary
+
+:ReturnMilitary a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Kind of military service expected for landholding, e.g. archer, footman, knight" ;
+	rdfs:label "ReturnsMilitary" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ReturnRender
+
+:ReturnRender a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "Kind of renders or returns expected for landholding, in kind or in money" ;
+	rdfs:label "Returns Render" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Role
+
+:Role a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "The context in which persons appear in a transaction, e.g. as grantor or beneficiary" ;
+	rdfs:label "Role" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Season
+
+:Season a owl:Class ;
+	rdfs:subClassOf :ThingThatCanBeOrdered , :ThingWithName ;
+	rdfs:comment "The four seaons of the year." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#SicutClauseType
+
+:SicutClauseType a owl:Class ;
+	rdfs:subClassOf :AuthorityList , :ThingThatCanBeOrdered ;
+	rdfs:comment "details about the _sicut_ clause, such as that land should be held as freely as any land in the kingdom" ;
+	rdfs:label "SicutClauseType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Source
+
+:Source a owl:Class ;
+	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , opf:Source ;
+	rdfs:comment "The document that provides the source material for the entry" ;
+	rdfs:label "Source" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TenendasClause
+
+:TenendasClause a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "list of various options included in the holding clause, indicating for example tenure in feu, in alms, or in frankmarriage." ;
+	rdfs:label "Tenendas Clause Option" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingOrganisedHierarchically
+
+:ThingOrganisedHierarchically a owl:Class ;
+	rdfs:comment "Any class which has members that can be organised hierarchically are subclasses of this class too, and share properties that support a hierarchical organisation of its instances; so that these instances can be organised as a conceptual tree.properties that express this hierarchy derive from the \"Nested Set\" approach for representing hierarchies that can be mapped effectively to the relational data paradigm. See https://en.wikipedia.org/wiki/Nested_set_model." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingReferencingPlace
+
+:ThingReferencingPlace a owl:Class ;
+	rdfs:comment "An entity type thats make explicit reference to geographic place (:Place) through a :hasPlace property" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingThatCanBeOrdered
+
+:ThingThatCanBeOrdered a owl:Class ;
+	rdfs:comment "This class of thing has information (in :hasOrderNo) that shows how the instances should be ordered in a list." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithAssociatedWebpage
+
+:ThingWithAssociatedWebpage a owl:Class ;
+	rdfs:comment "things of this Class have an associated webpage in PoMS browser-friendly website.  The property :hasAssociatedWebpage provides the URL for it." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithDatingInformation
+
+:ThingWithDatingInformation a owl:Class ;
+	rdfs:comment "Things of this class have historical dating information associated with them." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithID
+
+:ThingWithID a owl:Class ;
+	rdfs:comment "PoMS's source for RDF data is a relational database, and its mapping to RDF follows rather closely the DB's structure, in particular PoMS's tables to owl:Classes.  Thus, since all of PoMS's tables have ID keys, all PoMS[s classes have ID, and, hence, all PoMS classes are subclasses of :ThingWithID" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithName
+
+:ThingWithName a owl:Class ;
+	rdfs:comment "represent kinds of data that have a string of characters which can be categorised as a \"name\" for the thing." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithNotes
+
+:ThingWithNotes a owl:Class ;
+	rdfs:comment "A member of this class can have notes attached to it: short texts provided by the PoMS researchers that explain things (like classification decisions made by the PoMS project research team) to the PoMS user community." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#ThingWithPossibleDateRange
+
+:ThingWithPossibleDateRange a owl:Class ;
+	rdfs:comment "A class of thing has a string which represents, in human readable form, a date range." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TitleOccupationFactoid
+
+:TitleOccupationFactoid a owl:Class ;
+	rdfs:subClassOf :Factoid ;
+	rdfs:comment "A :Factoid that associates a title or occupation for a :Person." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TitleType
+
+:TitleType a owl:Class ;
+	rdfs:subClassOf :AuthorityList , :ThingReferencingPlace ;
+	rdfs:comment "type of title, occupation, or status marker, such as knight, bishop, clerk, Lord" ;
+	rdfs:label "TitleType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TransactionFactoid
+
+:TransactionFactoid a owl:Class ;
+	rdfs:subClassOf :FactoidInvolvingPossession , opf:Transaction ;
+	rdfs:comment "type of transaction, such as gift, sale, agreement, etc." .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TransactionOption
+
+:TransactionOption a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:label "Transaction Option" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#TransactionType
+
+:TransactionType a owl:Class ;
+	rdfs:subClassOf :AuthorityList ;
+	rdfs:comment "The types of transactions, such as gift, sale or agreement" ;
+	rdfs:label "TransactionType" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Weekday
+
+:Weekday a owl:Class ;
+	rdfs:subClassOf :ThingThatCanBeOrdered , :ThingWithName ;
+	rdfs:comment "The seven days of the week." .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Factoid
+
+opf:Factoid a owl:Class ;
+	rdfs:comment "A Factoid is a spot in a primary source where something is said about a Person or several people. This is the central conception of the \"factoid\" approach to prosopography." .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Person
+
+opf:Person a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PersonReference
+
+opf:PersonReference a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PossessionFactoid
+
+opf:PossessionFactoid a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Reference
+
+opf:Reference a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#RelationshipFactoid
+
+opf:RelationshipFactoid a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Source
+
+opf:Source a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Transaction
+
+opf:Transaction a owl:Class .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://www.poms.ac.uk/rdf/ontology#Autumn
+
+:Autumn a owl:NamedIndividual , :Season ;
+	:hasName "Autumn"^^xsd:string ;
+	:hasOrderNo "3"^^xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Friday
+
+:Friday a owl:NamedIndividual , :Weekday ;
+	:hasName "Friday"^^xsd:string ;
+	:hasOrderNo "5"^^xsd:integer ;
+	rdfs:label "Weekday: Friday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Monday
+
+:Monday a owl:NamedIndividual , :Weekday ;
+	:hasName "Monday"^^xsd:string ;
+	:hasOrderNo "1"^^xsd:integer ;
+	rdfs:label "Weekday: Monday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Saturday
+
+:Saturday a owl:NamedIndividual , :Weekday ;
+	:hasName "Saturday"^^xsd:string ;
+	:hasOrderNo "6"^^xsd:integer ;
+	rdfs:label "Weekday: Saturday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Spring
+
+:Spring a owl:NamedIndividual , :Season ;
+	:hasName "Spring"^^xsd:string ;
+	:hasOrderNo "1"^^xsd:integer ;
+	rdfs:label "Season: Spring" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Summer
+
+:Summer a owl:NamedIndividual , :Season ;
+	:hasName "Summer"^^xsd:string ;
+	:hasOrderNo "2"^^xsd:integer .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Sunday
+
+:Sunday a owl:NamedIndividual , :Weekday ;
+	:hasName "Sunday"^^xsd:string ;
+	:hasOrderNo "7"^^xsd:integer ;
+	rdfs:label "Weekday: Sunday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Thursday
+
+:Thursday a owl:NamedIndividual , :Weekday ;
+	:hasName "Thursday"^^xsd:string ;
+	:hasOrderNo "5"^^xsd:integer ;
+	rdfs:label "Weekday: Thursday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Tuesday
+
+:Tuesday a owl:NamedIndividual , :Weekday ;
+	:hasName "Tuesday"^^xsd:string ;
+	:hasOrderNo "2"^^xsd:integer ;
+	rdfs:label "Weekday: Tuesday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Wednesday
+
+:Wednesday a owl:NamedIndividual , :Weekday ;
+	:hasName "Wednesday"^^xsd:string ;
+	:hasOrderNo "3"^^xsd:integer ;
+	rdfs:label "Weekday: Wednesday" .
+# 
+# http://www.poms.ac.uk/rdf/ontology#Winter
+
+:Winter a owl:NamedIndividual , :Season ;
+	:hasName "Winter"^^xsd:string ;
+	:hasOrderNo "4"^^xsd:integer ;
+	rdfs:label "Season: Winter" .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi

@@ -1,0 +1,181 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta charset="utf-8"> 
+<title>PoMS RDF: Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/w3-theme-black.css">
+<!-- link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/font-awesome.css" -->
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<script src="sidebar.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- div class="w3-container w3-top" style="background-color: black; color: white" -->
+<div class="w3-top" style="margin: 0px; padding: 0px">
+  <div class="w3-theme w3-blue" style="background-color: rgb(232, 224, 218) !important; color: rgb(40, 40, 255) !important;">
+     <div class="w3-theme w3-teal" style="background: black url('images/header-banner.jpg') top left no-repeat; 	height: 140px;">
+      <h3 style="height: 175px; margin-top: 0px;margin-left: 130px; line-height: 155px">PoMS: RDF Services Documentation</h3>
+    </div>
+  </div>
+  <div class="w3-bar w3-left-align w3-large" style="background-color: black; color: white">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1e">Home</a>
+    <a href="why.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Why RDF</a>
+    <a href="using.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Using the Server</a>
+    <a href="ontology.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">PoMS Ontology</a>
+    <a href="sparql.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">SPARQL Examples</a>
+    <a href="http://www.poms.ac.uk" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS Home</a>
+    <a href="/rdf" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS RDF Server</a>
+   </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar" style="top: 183px">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Contents</b></h4>
+  <div id="sidebar-contents">
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div style="height: 170px;">&nbsp;</div>
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-blue" id="top">PoMS RDF: Documentation</h1>
+	  <p>Welcome to the set of documents that describe PoMS's presentation as RDF.<p>
+	  <p>As is the case with RDF materials in general, you will need to understand the formalities of RDF and its related
+	  technologies to make use of PoMS's RDF data, and there is no introduction to these basic principles of RDF here.
+	  However, even if you are already familiar with RDF and Semantic Web basic technologies if you intend to use PoMS's RDF
+	  facilities you will still need to understand how the PoMS data is presented as RDF and what tools are available to process it.
+	  Providing this information is the purpose of these pages.
+	  </p>
+	  <p>There are three sections to this front page for PoMS's RDF materials: A <i>Quick Start</i> section (below) allows those who wish to 
+	  get directly into the data without much preamble to do so. However, the pages available here also have a somewhat more in-depth discussion
+	  of the issues that arise in PoMS's RDF.  A few pointers to them are given in the <i>Exploring the PoMS RDF documentation</i> section below. Finally, the 
+	  <i>Acknowledgements</i> section acknowledges various partners and players who have participated in the construction of this RDF server.<p>
+	  <p>I hope you find PoMS's RDF materials interesting and useful. I'd welcome your thoughts.  Please contact me at</p>
+	  <p><code><a href="mailto:john.bradley@kcl.ac.uk">john.bradley@kcl.ac.uk</a></code></p>
+	  <h3 id="quick-start">Quick Start</h3>
+	  <ul>
+	  <li>PoMS's RDF are structured according to a rudimentary OWL ontology which you can find at 
+	  <a href="../ontology">http://www.poms.ac.uk/rdf/ontology#</a>. It is described
+	  in some detail in <a href="ontology.html">http://www.poms.ac.uk/rdf/doc/ontology.html</a>.</li>
+	  <li>PoMS's RDF server is constructed using parts of <i>rdf4j</i>'s workbench and, as such, provides a good basis for
+	  exploring PoMS's RDF data via a web browser. A good starting point for exploration
+	  is the "Types" display (see the tab to it in the Server's left-side menu) or click
+	  <a href="../repositories/PoMS/types">here</a> to go to it directly).  PoMS's specific types that are shown there are described in the page dedicated to
+	  its <a href="ontology.html">ontology</a>.</li>
+	  <li>PoMS's URIs for its entities all start with <code>http://www.poms.ac.uk/rdf/entity/</code> followed by the name
+	  of the type of entity (e.g. "<code>Person/</code>") followed by a number or name to identify a particular instance.  Any of these URI's
+	  can be given to the WWW, and will cause the server to generate the RDF statements that are connected to it.  To get the response as RDF data
+	  specify a suitable RDF mime type in your http request, or append the "format" parameter, specifying the suitable RDF mime type there.
+	  For more information, see the section "Entity URI support" in this web site's 
+	  "<a href="using.html">Using the Server</a>" page.</li>
+	  <li>A browser-friendly version of PoMS's SPAQRL processor is presented to the user at <a href="..">http://www.poms.ac.uk/rdf</a>.
+	  A data-oriented SPARQL processor is available at <code>http://www.poms.ac.uk/rdf/endpoint/</code>.  See the description
+	  of it in the section "PoMS rdf SPARQL Endpoint" on the <a href="using.html">Using the Server</a> page. Some
+	  examples of SPARQL queries for the PoMS RDF server can be found <a href="sparql.html">here</a></li>
+	  <li>A small example of how one might use RDF data in a python script to generate a display can be found in the <i>mapapp</i> demonstration. The materials for it can be found at <a href="../mapapp/index.html">http://www.poms.ac.uk/rdf/mapapp</a>. </li>
+	  </ul>
+	  <h3 id="in-depth">Exploring the PoMS RDF documentation</h3>
+	  <p>The pages that describe PoMS's RDF services in some depth are all available via the tabs showing at the top of all the RDF documentation pages, 
+	  including this one. The tabs are:
+	  <ul>
+	  <li><b>Home</b>: this page.</li>
+	  <li><b>Why RDF</b>: describes why the PoMS project is well suited to have its contents represented as RDF. It explores why PoMS
+	  should connect well to the Linked Open Data initiative (LOD), and opens a discussion of how one gets from PoMS's data to RDF.</li>
+	  <li><b>Using the Server</b>: This tab takes you to a page that describes how to use the various services that make up PoMS's RDF server.
+	  All of the server is built upon the rdf4j platform, and much of it is based closely on rdf4j's workbench environment, which provides
+	  a light-weight HTML-friendly presentation of RDF materials.  However, one can interact in a data-oriented fashion instead.  See the section
+	  "Services available that generate raw data" near the end of this page.</li>
+	  <li><b>PoMS Ontology</b>: PoMS's RDF data is formally organised around a computer ontology that was developed for it.
+	  The tab "PoMS ontology" takes you to the page that describes it.</li>
+	  <li><b>SPARQL Examples</b>: This tab takes you to a document that introduces you to using SPARQL queries on the
+	  PoMS RDF Server by showing several examples of queries.</li>
+	  </ul>
+	  <p>Some readers might be interested in the process that created the RDF data and server for PoMS.  The process used for PoMS was very similar to that
+	  used to build the sister RDF server for the <i>Prosopography of the Roman Republic</i> project.  You can find it described for DPRR 
+	  <a href="http://www.romanrepublic.ac.uk/rdf/doc/building.html">here</a>.</p>
+	  <h3 id="acknow">Acknowledgements</h3>
+	  <p>PoMS started as a joint project between the history departments at University of Glasgow and King's College London with
+	  King's Department of Digital Humanities (DDH), and has more recently been supported and developed by King's Digital Lab (KDL).
+	  Both the browser-oriented site at <a href="http://www.poms.ac.uk">http://www.poms.ac.uk</a> and this RDF server site are currently maintained by KDL under Service Level Agreement
+	  (for more details see <a href="https://www.kdl.kcl.ac.uk/how-we-work/kdl-designed-developed-and-maintained/">https://www.kdl.kcl.ac.uk/how-we-work/kdl-designed-developed-and-maintained/</a>).</p>
+	  <p>The data for PoMS was prepared under grants from the UK Arts and Humanities Research Council. PoMS's <a href="https://www.poms.ac.uk/about/project-team/">team page</a> 
+	  identifies the major players in the PoMS project.
+	  Also, see <a href="https://www.poms.ac.uk/information/">here</a> for general information about the data in PoMS and the project
+	  more generally.</p>
+	  <p>This RDF server is based on the <a href="http://rdf4j.org/">rdf4j</a> workbench, with a few changes and extensions created by John Bradley, who was in the past one of the PoMS's co-investigators.</p>
+	  <p>In partnership with DDH, KDL is working on increasing the availability of project data that could be of use
+	  to the wide community of academics, students, cultural sector professionals and the general public.
+	  This will improve the scholarly value of collective projects, and strengthen KDL ongoing efforts to justify
+	  investment in their long-term sustainability. Exposing the PoMS RDF triple store is part of this ongoing initiative.</p>
+	  
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <p><b>Copyright 2019 John Bradley, King's College London</b></p>
+	  <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>These documentation pages are powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+buildSidebar();
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+function dummy(){
+   window.alert("dummy");
+}
+</script>
+
+
+</body></html>

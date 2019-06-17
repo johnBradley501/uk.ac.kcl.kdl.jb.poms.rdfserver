@@ -1,0 +1,612 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta charset="utf-8"> 
+<title>PoMS RDF: Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/w3-theme-black.css">
+<!-- link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/font-awesome.css" -->
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<script src="sidebar.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- div class="w3-container w3-top" style="background-color: black; color: white" -->
+<div class="w3-top" style="margin: 0px; padding: 0px">
+  <div class="w3-theme w3-blue" style="background-color: rgb(232, 224, 218) !important; color: rgb(40, 40, 255) !important;">
+     <div class="w3-theme w3-teal" style="background: black url('images/header-banner.jpg') top left no-repeat; 	height: 140px;">
+      <h3 style="height: 175px; margin-top: 0px;margin-left: 130px; line-height: 155px">PoMS: RDF Services Documentation</h3>
+    </div>
+  </div>
+  <div class="w3-bar w3-left-align w3-large" style="background-color: black; color: white">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+    <a href="why.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Why RDF</a>
+    <a href="using.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Using the Server</a>
+    <a href="ontology.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">PoMS Ontology</a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1e">SPARQL Examples</a>
+    <a href="http://www.poms.ac.uk" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS Home</a>
+    <a href="/rdf" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS RDF Server</a>
+   </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar" style="top: 183px">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Contents</b></h4>
+  <div id="sidebar-contents">
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div style="height: 170px;">&nbsp;</div>
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-blue" id="top">SPARQL examples</h1>
+	<p>Although one can use the facilities of the rdf4j workbench components of PoMS's RDF server to look at RDF data, and useful
+	work can be done in this way alone, far more can be done through SPARQL queries. However, PoMS's data, like most substantive data
+	RDF is complex, and it takes a while to sort out how to create useful queries. This document provides some examples of simple and more complex SPARQL queries to help you get started with the task of
+	creating your own SPARQL queries.</p>
+	<p>Unfortunately it would be far too ambitious to create a tutorial here which introduces the fundamentals for the SPARQL query
+	language to those who are unfamiliar with it.  Instead, it is assumed that the reader already has the ability to create SPARQL
+	queries.  Those who are not familiar with SPARQL might first explore one of the following introductory tutorials before continuing
+	with this document.</p>
+	<ul>
+	<li>LinkDataTools.com's <a href="http://www.linkeddatatools.com/querying-semantic-data" target="_blank">Tutorial 5: Queryihg Semantic Data</a></li>
+	<li>Jena's <a href="https://jena.apache.org/tutorials/sparql_query1.html" target="_blank">SPARQL Tutorial - A First SPARQL Query</a></li>
+	<li>Dataversity's <a href="https://www.dataversity.net/introduction-to-sparql/#" target="_blank">Introduction to: SPARQL</a></li>
+	</ul>
+	<p>One important thing to sort out is what is the PoMS data's structure, since one will need to exploit the structure in order
+	to write useful queries.  There are two areas where one can read about the RDF structure:</p>
+	<ol>
+	<li>These documentation pages have a page dedicated to PoMS's data ontology.  The POMS Ontology tab, above will take you to it.
+	Of particular use there is the <i>Ontology Relationship Diagram</i>, which you can open
+	<a href="images/ontology-diagram.png" target="_blank">here</a>.</li>
+	<li>There is a set of HTML pages that present the PoMS ontology in detail as created by the OWLDoc application, including materials about all the data properties
+	which are not fully described elsewhere.  You can open it <a href="/rdf/ontology/doc/" target="_blank">here</a>.</li>
+	</ol>
+	<p>Finally, Before we begin looking at the SPARQL code a brief explanation about how to interact with this site might be in order.</p>
+	<ol>
+	  <li>Links to URIs in this text will invoke the RDF server, and the results will open in a new browser window.
+	  To return to this text, you can close this new window and resume reading
+	  in this window.</li>
+	  <li>Frequently SPARQL query code will be placed inside a small HTML form. The code can thus be sent to the server
+	  to be run simply by pushing the Execute button. The results will open in a new browser window, which can be closed
+	  once you have examined the results.  Alternatively, one could copy the SPARQL query to the server's own
+	  SPARQL query form, and run it there instead.  </li>
+	</ol>
+	<h3 id="first">A first query: authority list values</h3>
+	  <p>Often in SPARQL queries one needs to constrain a selection of data according to one of the items in one of PoMS's authority lists. For example, in this sequence of queries we will be looking at charters where women are grantors. To constrain their role in the charter's transaction factoid to Grantor we need to specify this through the URI for the role (<code>vocab:Role</code>) of Grantor.</p>
+<p>One can enter the class display and requests information in the dataset related to <code>vocab:Role</code>. Click <a href="/rdf/repositories/poms/explore?resource=vocab%3ARole" target="_blank">here</a> to see the result. After all the information related to how <code>vocab:Role</code> is defined in the PoMS ontology, one comes to the list of statements that assert that certain URIs are defined as Roles. One of these, picked here at random, is <a href="/rdf/entity/Role/16" target="_blank">&lt;http://www.poms.ac.uk/rdf/entity/Role/16&gt;</a>, and if you look at the statements associated with this role you can see one that asserts that its name (<code>vocab:hasName</code>) of "Addressee".</p>
+<p>One could open each instance of a <code>vocab:Role</code> URI to find the one for Grantor, but it is better to build a SPARQL query that finds all things that are asserted to be of class <code>vocab:Role</code>, locate for each the triple that has a predicate of <code>vocab:hasName</code> and display the URI for each one, with the name associated with it.</p>
+<p>Here is the SPARQL that does this, placed in an HTML form from which you can execute it:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="8" cols="80" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?name ?roleURI
+where {
+ ?roleURI a vocab:Role;
+    vocab:hasName ?name.
+} order by ?name</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<p>From the resulting display we can see that &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt; is the <i>Grantor</i> role, and
+&lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt; is the <i>Beneficiary</i> role.
+</p>
+<p>Later in this sequence of queries we will need to find out which Transaction Type (<code>vocab:TransactionType</code>) represents a <i>Gift</i>. Since. like <code>vocab:Role</code>, <code>vocab:TransactionType</code> is also an authority list, the same query, with <code>vocab:Role</code> replaced by <code>vocab:TransactionType</code> will display the list of all transaction types, and we can establish which one is a type of Gift. You can run this by editing the query in the form above in this way, and running the new query.
+	<h3 id="first">Women as grantors and beneficiaries in legal charters</h3>
+	<p>In this section we shall develop a query to allow us to see where in PoMS materials there are charters that have women both as grantors and as beneficiaries. We do this by building up gradually more complex queries until we have the one that does the job for us.</p>
+<h4>Query selecting all women</h4>
+<p>Let us begin by using a query that shows us all women that are registered in PoMS.  Here it is:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="12" cols="80" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?aperson ?herName ?id ?flStart ?flEnd
+where {
+ ?aperson a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?herName;
+   vocab:hasFloruitStartYr ?flStart;
+   vocab:hasFloruitEndYr ?flEnd.
+}
+order by ?herName
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>The <i>select</i> clause tells SPARQL to generate a 5 column display, showing in each row of results the values that the
+variables <code>aperson</code>, <code>herName</code>, etc. have. To sort out what the variables actually mean requires us to examine how they are selected from the data by the query's somewhat more complex <i>where</i> clause. It asks the SPARQL processor to set all persons that are a <code>vocab:HistoricaFemale</code>, and to set the values of theother variables it is to display with statements associated with this person, and that have predicates as shown: <code>vocab:hasID</code>, <code>vocab:hasPersonDisplayName</code>, etc. Therefore, putting the <i>where</i> clause together with the <i>select</i> clause show us that the 5 columns will be, for each woman, her URI identifier, her display name, her ID number, and the floruit start and end year associated with her. Finally, the optional <i>order by</i> clause asks the prcoessor to sort the results by the woman's name. Note the first line of the query is a <i>prefix</i> element which links the predicate "vocab:" to the URI for the PoMS ontology.  Thus, all items referred to with the <code>vocab:</code> prefix are items defined there.</p>
+
+<h4>Query selecting woman who are grantors only</h4>
+<p>The query above selects all women in the PoMS data, but does not filter this selection to show only those who were grantors in one or more of the legal charters. How do we exploit the structure of the data to filter what is chosen in this way? PoMS is a factoid prosopography, and so uses the concepts associated with factoids to organise its materials. Reading the description of the PoMS ontology <a href="ontology.html" target="_blank">here</a>, we find that the <a href="ontology.html#references" target="_blank">vocab:Reference</a> provides the information we need. As it says in the ontology description of the vocab:PersonReference, the vocab:Role is referenced through a property there:</p>
+<quote>
+there is a property <i>:hasRole</i> for <i>:PersonReference</i>
+that asserts the particular role for this person in this factoid, by pointing
+at one of the roles in the authority list <i>:Role</i>.
+</quote>
+<p>You can see the portion of the PoMS ontology's class relationship diagram, particularly the portion about references:</p>
+<p><img border=0 width=602 src="images/reference.png"></p>
+<p>... and can see there the property of the vocab:PersonReference kind of vocab:Reference called "vocab:hasRole" which associates a particular role to each person reference.</p>
+<p>Having now seen better how the roles are managed in the structure of PoMS, we are ready to consider the next query, which uses the vocab:Role in a vocab:PersonReference and restricts it to the role of grantor (you might recall that the first query example, above, has shown us that the Grantor role has URI <a href="/rdf/entity/Role/5" target="_blank">&lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;</a>:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="16" cols="80" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>The <i>select</i> clause here asks the processor to display only three variables, and, after we have examined the select clause we can see that these are the woman grantor's name, her URI, and the URI of the factoid (presumably in a <code>vocab:TransactionFactoid</code>) that has her acting as grantor.  The first two lines of the <i>where</i> clause makes sure that only women are selected, and for each one selects her display name which will be used for display purposes in the result.  The next three lines selects the references that are connected to the woman, selects only those that have a role of Grantor, and selects the URI of the factoid which has this reference in it.</p>
+<p>The resulting display shows most women in more than one row. This is because they are acting as grantor in more than one transaction factoid.  If we had wanted a simple list of women who acted as grantors -- one row for each -- we get this by changing the query: removing ?factoid from the select cause, and adding the word "distinct" after select, like this:</p>
+<pre>
+select distinct ?grantor ?grantorURI
+</pre>
+<p>You can try this by changing the select clause in this way, and running the resultant query again.</p>
+
+<h4>Kinds of transactions have women grantors?</h4>
+<p>What kind of transactions had women as grantors? The transaction factoid is a rich and complex one, with much information potentially attached to each transaction in the PoMS data. One can see much of this complexity by looking at the factoid part of the relationship diagram:</p>
+<p><img border=0 width=602 src="images/factoid.png"></p>
+<p>Here you can see the <code>vocab:TransactionType</code> authority list, where each individual transaction type as defined by the PoMS team is assigned an instance.  As the figure shows, the property <code>vocab:isTransactionType</code> links the transaction factoid to a particular type.</p>
+<p>The next query includes, for each factoid, the <i>kind</i> of transaction assigned to it:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="18" cols="80" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid ?ttype ?typename
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid;
+    vocab:isTransactionType ?ttype.
+  ?ttype vocab:hasName ?typename.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>The last three lines of the where clause have been added to gather the transaction type information, and the resulting selected material has been added to the select statement.  The third last line of the select clause asserts that the factoids selected by the
+part of the query above this has to be a <code>vocab:TransactionFactoid</code>.  Each transaction factoid will have a transaction type associated with it, and the URI for each factoid type is specified through the transaction factoid's <code>vocab:isTransactionType</code> property.  The last line of this query takes advantage of the fact that   <code>vocab:TransactionType</code> instances, which property <code>vocab:isTransactionType</code> points to, are authority lists, and so have a name provided through the <code>vocab:hasName</code> property.</p>
+<p>A look at the resultant display shows that the great majority of transactions involving women as grantors are identified as gifts by PoMS, but with a range of other types including sales, quitclaims, etc. Change the order by clause to <code>order by ?typename</code> to group the types together.</p>
+
+<h4>All gift transactions where women are grantors</h4>
+<p>We will focus here on gift transactions.  In the following query we add further parts to the where clause to find out who are the beneficiaries. This is done by adding parts that select a vocab:PersonReference os type "Beneficiary" (Role 7), and then establishing the name of the person.  Here is the relevant fragment:</p>
+<pre>
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI vocab:hasPersonDisplayName ?beneficiary.
+</pre>
+<p>... and here is the full query:
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI 
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid;
+    vocab:isTransactionType &lt;http://www.poms.ac.uk/rdf/entity/TransactionType/2&gt;.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI vocab:hasPersonDisplayName ?beneficiary.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<h4>Selecting grant transactions where women are grantors and women are beneficiaries (i)</h4>
+<p>We are getting close to aim is finding transactions where women are both grantors and beneficiaries. We must simply add a restriction to the query above so that the beneficiary (referenced in the query by variable ?beneURI) can only be a women.  Here is the query that does this:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#>
+select ?grantor ?grantorURI ?factoid ?ttype ?typename ?beneficiary ?beneURI
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5>;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid;
+    vocab:isTransactionType ?ttype.
+  ?ttype vocab:hasName ?typename.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI a vocab:HistoricalFemale;
+    vocab:hasPersonDisplayName ?beneficiary.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>The 2nd last line of the where clause does this by asserting that <code>?beneURI</code> must be a <code>vocab:HistorialFemale</code>.</p>
+<p>When the query is run you will notice that the PoMS team have decided to include the Blessed Virgin Mary as a women, and some characters evidently make reference to her as the beneficiary! This is, of course, understandable, but is perhaps not what we might want for our explorations here.  In the next step, we will explicitly exclude her from our considerations.</p>
+<h4>Selecting grant transactions where women are grantors and women are beneficiaries (ii)</h4>
+<p>We'd like to exclude the Blessed Virgin Mary as one of the beneficiaries for our query.  The display generated by the previous query shows that the BVM has the URI <code>&lt;http://www.poms.ac.uk/rdf/entity/Person/710&gt;</code>. We do this by explicitly excluding this URI as a beneficiary by using a SPARQL filter mechanism called "MINUS":</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: <http://www.poms.ac.uk/rdf/ontology#>
+select ?grantor ?grantorURI ?factoid ?ttype ?typename ?beneficiary ?beneURI
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid;
+    vocab:isTransactionType ?ttype.
+  ?ttype vocab:hasName ?typename.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI a vocab:HistoricalFemale;
+     vocab:hasPersonDisplayName ?beneficiary.
+  MINUS{?breference vocab:referencesPerson &lt;http://www.poms.ac.uk/rdf/entity/Person/710&gt;}
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>You can see the MINUS filter near the end of the query. Here, it tells the SPARQL processor to exclude any <code>?breference</code> (URI for women beneficiaries) which has the property <code>vocab:referencesPerson</code> pointing to the URL for the BVM.</p>
+<h4>Where are the properties exchanged between women?</h4>
+<p>A further expansion of the query allows us to retrieve information about where in Scotland the properties involved in these transactions between women are. To do this we make use of the fact that Transaction Factoids are connected through <code>vocab:PossessionReference</code> to one or more Possessions (<code>vocab:Possession</code>) which for possessions which are land are connected to places (<code>vocab:Place</code>).  You can see <code>vocab:Place</code> in PoMS's relationship diagram.  Here is a part of it that focuses on Place:</p>
+<p><img border=0 width=602 src="images/place.png"></p>
+<p>... and here is the query that fetches the relevant place data via the vocab:PossessionLand</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI ?possName ?placeName
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI a vocab:HistoricalFemale;
+     vocab:hasPersonDisplayName ?beneficiary.
+  MINUS{?breference vocab:referencesPerson &lt;http://www.poms.ac.uk/rdf/entity/Person/710&gt;}
+  ?possref a vocab:PossessionReference;
+      vocab:hasFactoid ?factoid;
+      vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+      vocab:hasName ?possName;
+      vocab:hasPlace ?possPlace.
+  ?possPlace a vocab:Place;
+      vocab:hasName ?placeName.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<h3 id="geographic">Using vocab:Place's Geographic Data in SPARQL</h3>
+<p>The instances of <code>vocab:Place</code> have three properties that contain geographic data. The data takes the form of a geographic point that represent the location of the place in Scotland.  In fact, of course, all places are more properly represented as geographic <i>areas</i> rather than <i>points</i>, but establishing boundaries for all the places would have been both much more time consuming, and in some cases more problematic, than providing a single point.</p>
+<p>The three properties are:</p>
+<ul>
+<li><code>vocab:hasGeographicLatitude</code>: A numeric value (double floating point) that represents the geographic latitute of the point associated with the place. e.g. 5.56E1</li>
+<li><code>vocab:hasGeographicLongitude</code>: A numeric value (double floating point) that represents the geographic longitude of the point associated with the place. e.g. -3.055E0</li>
+<li><code>vocab:hasGeoData</code>: the longitude and latitude of the point, given in wktLiteral notation. e.g. 	
+<code>"POINT(-3.055 55.6)"^^geo:wktLiteral</code></li>
+</ul>
+<p>The Latitude and Longitude valued properties can be used to provide values to systems that can make use of these values.  For example, the demonstration application mapapp, available from this server <a href="../mapapp/index.html" target="_blank">here</a>, is a small Python script that takes latitude and longitude values from the results of a SPARQL query and projects them onto an interactive map of Scotland. Indeed, a minor change to the query shown above that generates places associated with property exchanges between women is the one used in the demo application to provide the data for the map:
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI ?possName ?label ?lat ?long
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI a vocab:HistoricalFemale;
+     vocab:hasPersonDisplayName ?beneficiary.
+  MINUS{?breference vocab:referencesPerson &lt;http://www.poms.ac.uk/rdf/entity/Person/710&gt;}
+  ?possref a vocab:PossessionReference;
+      vocab:hasFactoid ?factoid;
+      vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+      vocab:hasName ?possName;
+      vocab:hasPlace ?possPlace.
+  ?possPlace a vocab:Place;
+      vocab:hasName ?label;
+      vocab:hasGeographicLatitude ?lat;
+      vocab:hasGeographicLongitude ?long.
+}
+order by ?grantor
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>One can see the html page that this python script generates <a href="../mapapp/mapapp1.html" target="_blank">here</a>.</p>
+
+<h4>Places involved in charters in Gaelic</h4>
+<p>The following query collects data about the few charters that PoMS researchers have from the medieval period that are written in Gaelic.  The language used in each charter is associated with it associated <code>vocab:Source</code> instance. By building a query which then locates the factoids associated with these Gaelic charters, and then locating from them the properties and places involve one can see where geographically the properties were that were referenced in these Gaelic language charters:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?source ?factoid ?possession ?place ?label ?lat ?long
+where {
+  ?source vocab:hasLanguage &lt;http://www.poms.ac.uk/rdf/entity/Language/Gaelic&gt;.
+  ?factoid vocab:hasSource ?source;
+     a vocab:TransactionFactoid.
+  ?possref vocab:hasFactoid ?factoid;
+     vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+     vocab:hasPlace ?place.
+  ?place vocab:hasName ?label;
+      vocab:hasGeographicLatitude ?lat;
+      vocab:hasGeographicLongitude ?long.
+}
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>This query is structured so that it would replace the query in mapapp, and thus this script could then be run to produce a map showing where these properties are located. Once this query is established to be working, one can add a bit more to the process to select additional data about the factoid, source and property that will then enrich the popup text that the map will display.</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+select ?source ?sourceName ?factoid ?factName ?possession ?possName ?place ?label ?lat ?long
+where {
+  ?source vocab:hasLanguage &lt;http://www.poms.ac.uk/rdf/entity/Language/Gaelic&gt;;
+     rdfs:label ?sourceName.
+  ?factoid vocab:hasSource ?source;
+     rdfs:label ?factName;
+     a vocab:TransactionFactoid.
+  ?possref vocab:hasFactoid ?factoid;
+     vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+     vocab:hasName ?possName;
+     vocab:hasPlace ?place.
+  ?place vocab:hasName ?label;
+      vocab:hasGeographicLatitude ?lat;
+      vocab:hasGeographicLongitude ?long.
+}
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<h3 id="geosparql">PoMS RDF and GeoSPARQL</h3>
+<p>RDF4J's SPARQL processor incorporates large parts of the GeoSPARQL specification which allows queries to be created that make use of geographic concepts such as geographic containment and distance. (About GeoSPARQL in rdf4j see pages at <a href="https://github.com/eclipse/rdf4j-doc/blob/master/site/content/documentation/programming/geosparql/index.md" target="_blank">GitHub</a> and <a href="https://rdf4j.eclipse.org/documentation/programming/geosparql/">rdfj4</a> itself).</p>
+<p>It is outside the scope of this document to present the GeoSPARQL features in detail. However, a few SPARQL queries that make use of them will hopefully be helpful.</p>
+<h4>A simple GeoSPARQL example</h4>
+<p>GeoSPARQL can make best use of vocab:Place's vocab:hasGeoData property, which provides the point coordinate data in the format that GeoSPARQL functions understand: wktLiteral notation. This simplest of GeoSPARQL-powered queries uses the function geof:distance to calculate the distance in kilometers between the two places specified explicitly in the query:</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="10" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+PREFIX uom: &lt;http://www.opengis.net/def/uom/OGC/1.0/&gt;
+PREFIX geof: &lt;http://www.opengis.net/def/function/geosparql/&gt;
+SELECT ?coord1 ?coord2 ?dist
+WHERE {
+   &lt;http://www.poms.ac.uk/rdf/entity/Place/10&gt; vocab:hasGeoData ?coord1.
+   &lt;http://www.poms.ac.uk/rdf/entity/Place/100&gt; vocab:hasGeoData ?coord2.
+  BIND((geof:distance(?coord1, ?coord2, uom:metre)/1000) as ?dist) .
+}
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<h4>Places in PoMS near to Dundee</h4>
+<p>The following query produces a list, ordered by distance, of places in PoMS that are close to what is now the modern Scottish city of Dundee (co-ordinates: lat 56.462, long -2.9707). Note the use of geof:buffer which creates a circular shape centered on Dundee's coordinates of 15 kilometers in size. This is given as the area for geof:sfWithin to use to check whether each place with a value for vocab:hasGeoData is inside it or not.
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="12" cols="100" wrap="soft">
+PREFIX uom: &lt;http://www.opengis.net/def/uom/OGC/1.0/&gt;
+PREFIX geof: &lt;http://www.opengis.net/def/function/geosparql/&gt;
+PREFIX geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?what ?name ?dist ?itemgeom
+where {
+  ?what vocab:hasName ?name;
+  vocab:hasGeoData ?itemgeom
+  FILTER(geof:sfWithin(?itemgeom, geof:buffer("POINT(-2.9707 56.462)"^^geo:wktLiteral, 15000.0, uom:metre))).
+  BIND((geof:distance("POINT(-2.9707 56.462)"^^geo:wktLiteral, ?itemgeom, uom:metre)/1000) as ?dist) .
+} order by ?dist
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<h4>Places in PoMS near a place in PoMS</h4>
+<p>A minor extension to the query above allows one to use any place with a point coordinate in PoMS as the centre for the "near to" query. &lt;http://www.poms.ac.uk/rdf/entity/Place/2459&gt; is Glasgow Cathedral.
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="12" cols="100" wrap="soft">
+PREFIX uom: &lt;http://www.opengis.net/def/uom/OGC/1.0/&gt;
+PREFIX geof: &lt;http://www.opengis.net/def/function/geosparql/&gt;
+PREFIX geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?what ?name ?dist
+where {
+  &lt;http://www.poms.ac.uk/rdf/entity/Place/2459&gt; vocab:hasGeoData ?centre.
+  ?what vocab:hasName ?name;
+  vocab:hasGeoData ?itemgeom
+  FILTER(geof:sfWithin(?itemgeom, geof:buffer(?centre, 15000.0, uom:metre))).
+  BIND((geof:distance(?centre, ?itemgeom, uom:metre)/1000) as ?dist) .
+} order by ?dist
+</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+
+<h4>Properties Granted to Glasgow Cathedral with distances</h4>
+<p>GeoSPARQL operations can be integrated into more general queries. In this example most of the query establishes places that have been granted to Glasgow Cathedral (&lt;http://www.poms.ac.uk/rdf/entity/Person/186&gt;, Place: &lt;http://www.poms.ac.uk/rdf/entity/Place/2459&gt;), but uses GeoSPARQL's geof:distance function to establish distance in kilometers for each of the land possessions granted from the cathedral itself.</p>
+<form action="/rdf/repositories/poms/query" target="_blank">
+<textarea id="query" name="query" rows="20" cols="100" wrap="soft">
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+PREFIX geof: &lt;http://www.opengis.net/def/function/geosparql/&gt;
+PREFIX uom: &lt;http://www.opengis.net/def/uom/OGC/1.0/&gt;
+select ?grantor ?grantorURI ?factoid ?flabel ?place ?placeName ?dist
+where {
+ &lt;http://www.poms.ac.uk/rdf/entity/Place/2459&gt; vocab:hasGeoData ?cathedral.
+ ?grantorURI a vocab:Person;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?breference vocab:referencesPerson &lt;http://www.poms.ac.uk/rdf/entity/Person/186&gt;;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:hasFactoid ?factoid.
+ ?greference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+ ?factoid rdfs:label ?flabel.
+ ?ref vocab:hasFactoid ?factoid;
+    vocab:referencesPossession ?possURI.
+ ?possURI vocab:hasPlace ?place.
+ ?place vocab:hasGeoData ?point;
+    vocab:hasName ?placeName;
+    vocab:hasGeoData ?placeGeo.
+  BIND((geof:distance(?cathedral, ?placeGeo, uom:metre)/1000) as ?dist) .
+}
+order by ?dist</textarea>
+<input type="hidden" name="ref" value="text"/>
+<input type="hidden" name="queryLn" value="SPARQL"/>
+<input type="hidden" name="limit_query" value="0"/>
+<br />
+<input id="exec" type="submit" value="Execute"/>
+</form>
+<p>The places are ordered by distance so that one can readily see what places have been granted to the cathedral that are some distance off.</p>
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <p><b>Copyright 2019 John Bradley, King's College London</b></p>
+	  <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>These documentation pages are powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+buildSidebar();
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+function dummy(){
+   window.alert("dummy");
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,322 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta charset="utf-8"> 
+<title>PoMS RDF: Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/w3-theme-black.css">
+<!-- link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/font-awesome.css" -->
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<script src="sidebar.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- div class="w3-container w3-top" style="background-color: black; color: white" -->
+<div class="w3-top" style="margin: 0px; padding: 0px">
+  <div class="w3-theme w3-blue" style="background-color: rgb(232, 224, 218) !important; color: rgb(40, 40, 255) !important;">
+     <div class="w3-theme w3-teal" style="background: black url('images/header-banner.jpg') top left no-repeat; 	height: 140px;">
+      <h3 style="height: 175px; margin-top: 0px;margin-left: 130px; line-height: 155px">PoMS: RDF Services Documentation</h3>
+    </div>
+  </div>
+  <div class="w3-bar w3-left-align w3-large" style="background-color: black; color: white">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-theme-l1e w3-hover-white">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small">Why RDF</a>
+    <a href="using.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Using the Server</a>
+    <a href="ontology.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">PoMS Ontology</a>
+    <a href="sparql.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">SPARQL Examples</a>
+    <a href="http://www.poms.ac.uk" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS Home</a>
+    <a href="/rdf" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS RDF Server</a>
+   </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar" style="top: 183px">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Contents</b></h4>
+  <div id="sidebar-contents">
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div style="height: 170px;">&nbsp;</div>
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-blue" id="top">Why PoMS as RDF?</h1>
+<p>According to Wikipedia (page: <a href="https://en.wikipedia.org/wiki/Linked_data">Linked Data</a>), Tim Berners Lee
+coined the term &quot;linked data&quot; in 2006 in a document about the
+Semantic Web project. Nonetheless Wikipedia goes on to cite Bizer, Heath and
+Berners-Lee's 2009 paper entitled &quot;Linked Data: The Story So Far&quot; as a
+source for its opening definition of Linked data:</p>
+
+<blockquote>&quot;a method of publishing
+structured data so that it can be interlinked and become more useful through
+semantic queries. It builds upon standard Web technologies such as HTTP, RDF
+and URIs, but rather than using them to serve web pages for human readers, it
+extends them to share information in a way that can be read automatically by
+computers. This enables data from different sources to be connected and
+queried.&quot;</blockquote>
+
+<h3 id="about">About PoMS</h3>
+<p>Why is Linked Data relevant to the PoMS project? First of
+all, I believe Linked and Open Data principles are particularly relevant to
+PoMS because PoMS is a prosopography, and, generally speaking, I believe that
+published prosopography offers an almost ideal kind of research that could be
+expressed as linked data. There are two senses in which prosopography connects
+with linked data's central principles.Â  First, because a prosopography aims to
+develop the identity of their historical persons in a way that crosses multiple
+historical sources, these identified historical people act, by their very
+nature, as a kind of interlinking between these different sources.Â  Second, a
+prosopography is, at least potentially, a global object &#x2014; something used by other
+researchers throughout the world as a source for identities for historical
+people.Â  The people-as-entities in a prosopography ideally have a global reach
+and can thus play a part in the Global Graph that web folk, and those in the
+Semantic Web and Linked Data in particular, talk about. For these reasons, it
+seems to me that a prosopography forms the basis for a particularly rich and
+interesting Linked Data kind of publication.</p>
+
+<p>Furthermore, the <i>People of Medieval Scotland</i> (PoMS), like DDH/CCH's many other prosopographical projects, is constructed
+based on a representation of its materials in the form of highly structured
+data. Indeed, like DDH/CCHâ€™s other structured prosopographies, PoMS is built on
+top of that quintessential highly structured paradigm: the relational database,
+and as a result, PoMSâ€™s historical research work has been already expressed in
+terms of entities, attributes and relationships as they are thought of in the
+relational data model. Since the Linked Data model is also based on the idea of
+representing materials in the form of highly structured data that is accessible
+globally, PoMSâ€™s highly structured database would appear to fit well with it.</p>
+
+<p>Furthermore, unlike the other structured data prosopography which has been expressed
+in Semantic Web's RDF technology, DPRR (<a href="http://romanrepublic.ac.uk/rdf">http://romanrepublic.ac.uk/rdf</a>) PoMS is
+in fact created using the factoid prosopography paradign (Bradley 2017) as one of its fundamental semantic principles.
+Indeed, it is explicitly connected to the Factoid Prosopography Ontology described in Bradley 2017 through its own
+ontology.</p> 
+
+<h3 id="why">Why a PoMS RDF Server?</h3>
+<p>We have already said that PoMS is built upon the relational
+database &#x2014; and called this the â€œquintessential structured data paradigmâ€. Here,
+however, we are talking about a linked data or semantic web representation of
+PoMSâ€™s materials, and although both linked data/semantic web technologies and
+relational database technologies are built upon a shared basic conception of
+highly structured data, they are not the same. What, then, is necessary to turn
+PoMSâ€™s already existing database-like structured materials into a publication that
+fits the similar-but-different Linked Data model?Â  In order to think about this
+most usefully, we need to understand the fundamental principles of Linked Data.</p>
+
+<p>Tim Berners-Lee gave a presentation on linked data at the
+TED 2010 conference. In it, he restated the linked data principles as three
+&quot;extremely simple&quot; rules:</p>
+<ul>
+<li>&quot;All kinds of conceptual things, they have names now that start
+with HTTP.</li>
+
+<li>I get important information back. I will get back some data in a
+standard format which is kind of useful data that somebody might like to know
+about that thing, about that event.</li>
+
+<li>I get back that information it's not just got somebody's height
+and weight and when they were born, it's got relationships. And when it has
+relationships, whenever it expresses a relationship then the other thing that
+it's related to is given one of those names that starts with HTTP.&quot;</li>
+</ul>
+<p>More formally, Bizer, Heath and Berners-Lee's 2009 paper,
+mentioned earlier, specify four criteria that Berners-Lee had described as a
+â€œset of 'rules' for publishing data on the Webâ€ in a way that all published
+data becomes part of a single global data space. These four principles are
+presented succinctly in Wikipediaâ€™s â€œLinked Dataâ€ entry:</p>
+<ol>
+<li>Use URIs as names for things</li>
+
+<li>Use HTTP URIs so that people can look up those names</li>
+
+<li>When someone looks up a URI, provide useful information, using the standards (RDF,
+SPARQL)</li>
+
+<li>Include links to other URIs, so that they can discover more things.</li>
+</ol>
+<p>Rules one and two of these four seem to be met already by
+PoMSâ€™s existing web browser oriented web application at URL <a href="http://www.poms.ac.uk/">http://www.poms.ac.uk//</a>.
+Rule one, for example: there is one publishable URL provided by the browser-oriented web
+application for each person in PoMS, and it is a RESTful one (definition of
+RESTful URLâ€™s see Wikipediaâ€™s definition
+<a href="https://en.wikipedia.org/wiki/Representational_state_transfer">here</a>). An example
+from PoMS would be the URL for Abraham, Bishop of Dunblane (fl.1210×14-1220×25):
+<a href="https://www.poms.ac.uk/record/person/749/">https://www.poms.ac.uk/record/person/749/</a>.This URL, then,
+could be interpreted as rule 1â€™s â€œURIâ€ acting as akind of name for its person.
+Furthermore, if the existing web app is directly presented with this personâ€™s
+URL, the application will return back an HTML page containing the information
+PoMS has about that person, you can see this happenning when one clicks on the Bishop's URL shown above.
+Thus, as rule 2 requires, anyone with WWW access can
+use this HTTP URI to look up that PoMS person. Furthermore, the generated PoMS
+page provides, as rule 3 says, â€œuseful informationâ€ about the entity it refers
+to &#x2014; although, of course, the material is presented as an HTML page in a form
+suitable for presentation by a web browser and is not delivered using the
+semantic web standards of RDF. Finally, (rule 4) these generated web pages do
+in fact contain links to other URIs within PoMS.</p>
+
+<p>So, what is missing from the existing PoMS web application
+that is needed to make it more fully into a Linked Data application? The key
+issue can be found in the second half of Wikipediaâ€™s definition of linked data
+&#x2014; items 3 and 4. As Bizer, Heath and Berners-Lee say, to operate as Linked
+Data, the material has to presented â€œin a way that can be read automatically by
+computers.â€ They then go on to say that this enables data from different
+sources to be â€œappropriately connected and queried.&quot;  With the current
+â€œbrowser orientedâ€ web application the material is presented in terms of a HTML
+web page suitable for reading by a human user, rather than in the form that explicitly expresses the formal
+structured data. Of course, one <i>can</i> apply techniques called â€œscreen scrapingâ€ to extract
+the data from the presented web pages, but screen scraping is broadly
+understood by its practitioners as awkward to do, and prone to error. Thus,
+when presented as a set of HTML web pages, PoMSâ€™s data cannot readily be
+processed, as data, by computers, and cannot readily be used as a source to be
+connected, as data, with other sources. This is why Bizer, Heath and
+Berners-Lee attach an explicit reference to RDF in their rule 3. RDF is
+described in its own documentation as a representation of a world-wide
+â€œgraph-based data modelâ€ (section 1.1, https://www.w3.org/TR/rdf11-concepts/). By
+presenting the PoMS data in RDF, a language specifically designed for interlinking
+between data that can operate potentially world-wide, and is then available for
+further computer processing, one can present PoMSâ€™s research materials as a
+more satisfactory Linked Data source. </p>
+
+<h3 id="building">Building the RDF</h3>
+<p>The work described and referenced in these pages does
+exactly this: it turns PoMSâ€™s relational database which holds the intellectual
+work embodied in PoMS into RDF, and then uses pieces of RDF-related technology
+to deliver RDF over the internet to anyone that wants to use it. However, the
+work done here goes further than just this. In addition:</p>
+<ul>
+<li>First, it provides access to RDF data using the query mechanism
+specifically designed for selecting and processing RDF data: SPARQL (<a
+href="http://www.w3.org/TR/sparql11-query/">http://www.w3.org/TR/sparql11-query/</a>).Â 
+By providing a SPARQL endpoint, we are allowing users to select and order data
+in PoMS in any way that a SPARQL query allows (subject, of course, to
+length-of-time limitations for processing), and this, in turn, allows for a
+much broader range of querying than PoMSâ€™s current browser-oriented web
+application data selection methods support.</li>
+
+<li>Second, the work has resulted in the creation of a Semantic Web ontology
+for PoMS &#x2014; a formal definition of the structure of PoMSâ€™s data. Digital
+Ontologies are important elements in the whole framework of Semantic Web
+technologies that go beyond the more modest aims of Linked Data. They
+provide mechanisms that, because of their formalism, allow the computer on its
+own to better exploit the link between the structure of PoMSâ€™s data and its
+meaning in the world. And, indeed, PoMS's ontology does allow some of
+the Semantic Webâ€™s ideas related to automatic reasoning to be exploited against
+this data. However, an ontology for PoMS has a further significant different
+purpose: it makes it easier for human users to understand what kind of
+information is in the set of RDF data for PoMS, and how it fits together.</li>
+</ul>
+
+<p>So, the work described here resulted in several products:</p>
+<ol>
+<li>The PoMS MySQL relational database was translated into a sequence of RDF
+triples,</li>
+
+<li>The triples were loaded into an RDF repository, and made available to the WWW via a
+server,</li>
+
+<li>PoMSâ€™s
+server was extended to support a SPARQL query frontend (a so-called SPARQL
+endpoint), and</li>
+
+<li>The structure behind RDFâ€™s triples has been defined in a basic Semantic Web OWL
+ontology.</li>
+</ol>
+
+<p>The rest of this PoMS RDF site talks more about this work, and has two parts:</p>
+<ul>
+<li><i>Using PoMSâ€™s RDF Server: </i>First, there is guidance on how
+to use the PoMS RDF Linked Data server to get at, and query, PoMS materials (Tab "<a href="using.html">Using the Server</a>" (above)), and</li>
+
+<li><i>PoMS Ontology:</i> Then Tab "<a href="ontology.html">PoMS Ontology</a>" presents an overview of PoMS's ontology. In addition to this, there is also a web-site presentation
+of the ontology that was automatically generated by OWLDoc <a href="/rdf/ontology/doc">here</a>.</li>
+</ul>
+
+<h3 id="references">References</h3>
+<ul>
+<li>Berners-Lee, Tim (2010). â€œThe year open data went worldwideâ€. <i>TED Talk</i>.
+At <a href="https://www.ted.com/talks/tim_berners_lee_the_year_open_data_went_worldwide">https://www.ted.com/talks/tim_berners_lee_the_year_open_data_went_worldwide</a></li>
+<li>Bizer, Christian, Tom Heath and Tim Berners-Lee (2009). "Linked Data: the Story So Far". 
+In <i>International Journal on Semantic Web and Information Systems</i>. 5 (3): 1â€“22. doi:10.4018/jswis.2009081901. ISSN 1552-6283. 
+At <a href="http://tomheath.com/papers/bizer-heath-berners-lee-ijswis-linked-data.pdf">http://tomheath.com/papers/bizer-heath-berners-lee-ijswis-linked-data.pdf</a>.</li>
+<li>Bradley, John (2017). <i>Factoids: A site that introduces Factoid Prosopography</i>. At <a href="https://factoid-dighum.kcl.ac.uk/">https://factoid-dighum.kcl.ac.uk/</a></li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <!-- Pagination -->
+  <!-- div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a class="w3-button w3-black" href="#">1</a>
+      <a class="w3-button w3-hover-black" href="#">2</a>
+      <a class="w3-button w3-hover-black" href="#">3</a>
+      <a class="w3-button w3-hover-black" href="#">4</a>
+      <a class="w3-button w3-hover-black" href="#">5</a>
+      <a class="w3-button w3-hover-black" href="#">Â»</a>
+    </div>
+  </div -->
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <p><b>Copyright 2019 John Bradley, King's College London</b></p>
+	  <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>These documentation pages are powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+buildSidebar();
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+function dummy(){
+   window.alert("dummy");
+}
+</script>
+
+
+</body></html>

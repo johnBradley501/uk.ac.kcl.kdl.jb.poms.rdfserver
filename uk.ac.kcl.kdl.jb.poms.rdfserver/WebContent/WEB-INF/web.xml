@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<!-- This is a modified version of the web.xml file distributed by rdf4j for its workbench web app.  It is modified in four general ways:
+* First, all code involved in supporting workbench functions that modify data has been removed.
+* Second, references to location of the RDF server and repository have been removed because this data is now provided in file server.config
+so that it can be shared between the three servlets that need it, and
+* Third, definitions for three servlets have been added: the entity and SPARQL endpoint servlets, and the ontology file serving servlet.
+* A listener MyServletContextListener has been added as a way to get the RDF data loaded before the web app goes inbto service: saves time for
+the first
+A few other minor changes (such as "display-name", below, have been made.
+
+... John Bradley DDH/KCL (June 2017, then March 2019) -->
+
+	<display-name>PoMS RDF Server</display-name>
+	<description>PoMS RDF Server</description>
+	
+	<listener>
+  	<listener-class>
+  		uk.ac.kcl.kdl.jb.rdf.server.MyServletContextListener
+  	</listener-class>
+  </listener>
+
+	<filter>
+		<filter-name>redirect</filter-name>
+		<filter-class>
+			org.eclipse.rdf4j.workbench.proxy.RedirectFilter
+		</filter-class>
+		<init-param>
+			<param-name>/</param-name>
+			<param-value>/repositories</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>cache</filter-name>
+		<filter-class>
+			org.eclipse.rdf4j.workbench.proxy.CookieCacheControlFilter
+		</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>CacheFilter</filter-name>
+		<filter-class>org.eclipse.rdf4j.workbench.proxy.CacheFilter</filter-class>
+		<init-param>
+			<param-name>Cache-Control</param-name>
+			<param-value>600</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>redirect</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>cache</filter-name>
+		<url-pattern>/repositories/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>workbench</servlet-name>
+		<servlet-class>
+			org.eclipse.rdf4j.workbench.proxy.WorkbenchGateway
+		</servlet-class>
+		<init-param>
+			<param-name>transformations</param-name>
+			<param-value>/transformations</param-value>
+		</init-param>
+		<init-param>
+			<param-name>accepted-server-prefixes</param-name>
+			<param-value>file: http: https:</param-value>
+		</init-param>
+		<init-param>
+			<param-name>change-server-path</param-name>
+			<param-value>/NONE/server</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cookie-max-age</param-name>
+			<param-value>2592000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>no-repository-id</param-name>
+			<param-value>NONE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-command</param-name>
+			<param-value>/welcome</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-limit</param-name>
+			<param-value>100</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-queryLn</param-name>
+			<param-value>SPARQL</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-infer</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-Accept</param-name>
+			<param-value>application/rdf+xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default-Content-Type</param-name>
+			<param-value>application/rdf+xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/summary</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.SummaryServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/welcome</param-name>
+			<param-value>uk.ac.kcl.kdl.jb.rdf.server.servlet.WelcomeServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/info</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.InfoServlet</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/information</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.InformationServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/namespaces</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.NamespacesServlet
+			</param-value>
+		</init-param>
+		<!--   init-param>
+			<param-name>/contexts</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.ContextsServlet
+			</param-value>
+		</init-param-->
+		<init-param>
+			<param-name>/types</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.TypesServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/classes</param-name>
+			<param-value>uk.ac.kcl.kdl.jb.rdf.server.servlet.ClassesServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/properties</param-name>
+			<param-value>uk.ac.kcl.kdl.jb.rdf.server.servlet.PropertiesServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/explore</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.ExploreServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/rdfgen</param-name>
+			<param-value>uk.ac.kcl.kdl.jb.rdf.server.servlet.RdfGenServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/query</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.QueryServlet
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>/export</param-name>
+			<param-value>org.eclipse.rdf4j.workbench.commands.ExportServlet
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>workbench</servlet-name>
+		<url-pattern>/repositories/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>entities</servlet-name>
+		<servlet-class>
+			uk.ac.kcl.kdl.jb.rdf.server.servlet.EntityServlet
+		</servlet-class>
+		<init-param>
+			<param-name>default-format</param-name>
+			<param-value>text/turtle</param-value>
+		</init-param>
+		<init-param>
+			<param-name>transformations</param-name>
+			<param-value>/transformations</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cookie-max-age</param-name>
+			<param-value>2592000</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>entities</servlet-name>
+		<url-pattern>/entity/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>endpoint</servlet-name>
+		<servlet-class>
+			uk.ac.kcl.kdl.jb.rdf.server.servlet.EndpointServlet
+		</servlet-class>
+		<init-param>
+			<param-name>default-repository</param-name>
+			<param-value>poms</param-value>
+		</init-param> -->
+		<init-param>
+			<param-name>default-format</param-name>
+			<param-value>text/turtle</param-value>
+		</init-param>
+		<init-param>
+			<param-name>transformations</param-name>
+			<param-value>/transformations</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cookie-max-age</param-name>
+			<param-value>2592000</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>endpoint</servlet-name>
+		<url-pattern>/endpoint/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ontology</servlet-name>
+		<servlet-class>
+			uk.ac.kcl.kdl.jb.rdf.server.servlet.OntologyServlet
+		</servlet-class>
+		</servlet>
+	<servlet-mapping>
+		<servlet-name>ontology</servlet-name>
+		<url-pattern>/ontology</url-pattern>
+	</servlet-mapping>
+
+</web-app>
+

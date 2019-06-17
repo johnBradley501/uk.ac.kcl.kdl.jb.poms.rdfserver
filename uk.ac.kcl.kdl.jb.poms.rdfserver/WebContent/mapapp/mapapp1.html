@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Map test</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+</head>
+<body>
+<h4>A map with plotted PoMS data</h4>
+<hr>
+<div id="mapid" style="height: 700px;"></div>
+<script>
+   var mymap = L.map('mapid').setView([56.860916, -4.251433], 7);
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.satellite'
+	}).addTo(mymap);
+
+
+    var marker = L.marker([5.59706E1, -3.30655E0]).addTo(mymap);
+    marker.bindPopup("<table width=600><tr><th>grantor</th><td>Alice, daughter of John son of Ranulf of Cramond</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/10939\">http://www.poms.ac.uk/rdf/entity/Person/10939</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/50814\">http://www.poms.ac.uk/rdf/entity/Factoid/50814</a></td></tr><tr><th>beneficiary</th><td>Margaret, queen of Scots (d.1093)</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/246\">http://www.poms.ac.uk/rdf/entity/Person/246</a></td></tr><tr><th>possName</th><td>6 acres of land with toft and croft in Cramond</td></tr></table>",{ maxWidth : 600});
+    var tooltip = L.tooltip({permanent: true}).setContent("Cramond");
+    marker.bindTooltip(tooltip).openTooltip().closePopup();
+    var marker = L.marker([5.75198E1, -3.98229E0]).addTo(mymap);
+    marker.bindPopup("<table width=600><tr><th>grantor</th><td>Elizabeth Bisset, wife of Andrew del Bois</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/10677\">http://www.poms.ac.uk/rdf/entity/Person/10677</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/73698\">http://www.poms.ac.uk/rdf/entity/Factoid/73698</a></td></tr><tr><th>beneficiary</th><td>Mariota/Mary, wife of Hugh de Ros (Rose)</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/16833\">http://www.poms.ac.uk/rdf/entity/Person/16833</a></td></tr><tr><th>possName</th><td>Kilravock</td></tr></table>",{ maxWidth : 600});
+    var tooltip = L.tooltip({permanent: true}).setContent("Kilravock");
+    marker.bindTooltip(tooltip).openTooltip().closePopup();
+    var marker = L.marker([5.58917E1, -2.15167E0]).addTo(mymap);
+    marker.bindPopup("<table width=600><tr><th>grantor</th><td>Emma, daughter of Elias Dunning </td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/11911\">http://www.poms.ac.uk/rdf/entity/Person/11911</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/54119\">http://www.poms.ac.uk/rdf/entity/Factoid/54119</a></td></tr><tr><th>beneficiary</th><td>Amabel, wife of Alan the carpenter (Coldingham)</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/11768\">http://www.poms.ac.uk/rdf/entity/Person/11768</a></td></tr><tr><th>possName</th><td>toft and croft along monastery wall in villa of Coldingham</td></tr><tr><td colspan=2><hr></td></tr><tr><th>grantor</th><td>Mabel, daughter of Constantine of Coldingham </td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/11693\">http://www.poms.ac.uk/rdf/entity/Person/11693</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/53539\">http://www.poms.ac.uk/rdf/entity/Factoid/53539</a></td></tr><tr><th>beneficiary</th><td>Saint Abbe</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/4506\">http://www.poms.ac.uk/rdf/entity/Person/4506</a></td></tr><tr><th>possName</th><td>5 acres of land in Fleurs</td></tr></table>",{ maxWidth : 600});
+    var tooltip = L.tooltip({permanent: true}).setContent("Coldingham");
+    marker.bindTooltip(tooltip).openTooltip().closePopup();
+    var marker = L.marker([5.56667E1, -2.42167E0]).addTo(mymap);
+    marker.bindPopup("<table width=600><tr><th>grantor</th><td>Matilda, mother of Robert de Muschamp and Gilia</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/7803\">http://www.poms.ac.uk/rdf/entity/Person/7803</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/58634\">http://www.poms.ac.uk/rdf/entity/Factoid/58634</a></td></tr><tr><th>beneficiary</th><td>Gilia, daughter of Matilda</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/7804\">http://www.poms.ac.uk/rdf/entity/Person/7804</a></td></tr><tr><th>possName</th><td>land in Hassington</td></tr><tr><td colspan=2><hr></td></tr><tr><th>grantor</th><td>Matilda, mother of Robert de Muschamp and Gilia</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/7803\">http://www.poms.ac.uk/rdf/entity/Person/7803</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/58634\">http://www.poms.ac.uk/rdf/entity/Factoid/58634</a></td></tr><tr><th>beneficiary</th><td>Gilia, daughter of Matilda</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/7804\">http://www.poms.ac.uk/rdf/entity/Person/7804</a></td></tr><tr><th>possName</th><td>meadow in Hassington</td></tr></table>",{ maxWidth : 600});
+    var tooltip = L.tooltip({permanent: true}).setContent("Hassington");
+    marker.bindTooltip(tooltip).openTooltip().closePopup();
+    var marker = L.marker([5.631E1, -3.73833E0]).addTo(mymap);
+    marker.bindPopup("<table width=600><tr><th>grantor</th><td>Muriel, daughter of Congal son of Duncan</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/11424\">http://www.poms.ac.uk/rdf/entity/Person/11424</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/52405\">http://www.poms.ac.uk/rdf/entity/Factoid/52405</a></td></tr><tr><th>beneficiary</th><td>Ada, wife of William Murray</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/5752\">http://www.poms.ac.uk/rdf/entity/Person/5752</a></td></tr><tr><th>possName</th><td>Tullibardine</td></tr><tr><td colspan=2><hr></td></tr><tr><th>grantor</th><td>Muriel, daughter of Congal son of Duncan</td></tr><tr><th>grantorURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/11424\">http://www.poms.ac.uk/rdf/entity/Person/11424</a></td></tr><tr><th>factoid</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Factoid/66125\">http://www.poms.ac.uk/rdf/entity/Factoid/66125</a></td></tr><tr><th>beneficiary</th><td>Ada, wife of William Murray</td></tr><tr><th>beneURI</th><td><a href=\"http://www.poms.ac.uk/rdf/entity/Person/5752\">http://www.poms.ac.uk/rdf/entity/Person/5752</a></td></tr><tr><th>possName</th><td>Tullibardine</td></tr></table>",{ maxWidth : 600});
+    var tooltip = L.tooltip({permanent: true}).setContent("Tullibardine");
+    marker.bindTooltip(tooltip).openTooltip().closePopup();
+
+</script>
+<h4>The Query</h4>
+<pre>
+PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
+select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI ?possName ?label ?lat ?long
+where {
+ ?grantorURI a vocab:HistoricalFemale;
+   vocab:hasID ?id;
+   vocab:hasPersonDisplayName ?grantor.
+ ?areference vocab:referencesPerson ?grantorURI;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/5&gt;;
+    vocab:hasFactoid ?factoid.
+  ?factoid a vocab:TransactionFactoid.
+  ?breference vocab:hasFactoid ?factoid;
+    vocab:hasRole &lt;http://www.poms.ac.uk/rdf/entity/Role/7&gt;;
+    vocab:referencesPerson ?beneURI.
+  ?beneURI a vocab:HistoricalFemale;
+     vocab:hasPersonDisplayName ?beneficiary.
+  MINUS{?breference vocab:referencesPerson &lt;http://www.poms.ac.uk/rdf/entity/Person/710&gt;}
+  ?possref a vocab:PossessionReference;
+      vocab:hasFactoid ?factoid;
+      vocab:referencesPossession ?possession.
+  ?possession a vocab:PossessionLand;
+      vocab:hasName ?possName;
+      vocab:hasPlace ?possPlace.
+  ?possPlace a vocab:Place;
+      vocab:hasName ?label;
+      vocab:hasGeographicLatitude ?lat;
+      vocab:hasGeographicLongitude ?long.
+}
+order by ?grantor
+
+</pre>
+</body>
+</html>
+    

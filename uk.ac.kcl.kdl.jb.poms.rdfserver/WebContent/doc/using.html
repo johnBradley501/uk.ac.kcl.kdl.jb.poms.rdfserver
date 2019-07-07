@@ -108,7 +108,7 @@ RDF.</li>
 <li><b>Explore</b>: allows you to enter any URI from PoMS RDF’s
 representation and see what data the repository has that involves that URI.</li>
 
-<li><b>Query</b>: is this startup screen, and allows you to enter
+<li><b>Query</b>: Allows you to enter
 SPARQL queries that interact with PoMS’s RDF dataset.</li>
 
 <li><b>Export</b>: allows you to get the data out of PoMS’s RDF
@@ -135,7 +135,7 @@ within the repository for each one.</p>
 src="images/image003.png"></p>
 
 <p>By clicking on the Classes link one is presented with the list
-of classes of data found in PoMS’s RDF repository. The ones with prefix “vocab:”
+of OWL classes found in PoMS’s RDF repository. The ones with prefix “vocab:”
 are specific to PoMS’s own ontology, which is described in some detail <a href="ontology.html">here</a>.
 Clicking on one of the listed classes invokes the Explore
 display for that specific class which, in turn, gives you access to both (i) the
@@ -144,7 +144,7 @@ its specific instances. For instance, choosing “vocab:Person” generates a nu
 triples about the Person entity, and then this is followed by the list of
 Persons defined in PoMS.</p>
 
-<p>Thus, the Class display, coupled with the Properties and Explore Displays (described next)
+<p>Thus, the Class display, coupled with the Properties (described next) and Explore Displays 
 provides a useful way to explore the entire PoMS repository.</p>
 
 <h3 id="properties">Properties Display</h3>
@@ -153,23 +153,24 @@ provides a useful way to explore the entire PoMS repository.</p>
 src="images/image003a.png"></p>
 
 <p>By clicking on the Properties link one is presented with the list
-of class properties  found in PoMS’s RDF repository. The ones with prefix “vocab:”
+of OWL properties found in PoMS’s RDF repository. The ones with prefix “vocab:”
 are specific to PoMS’s own ontology, which is described in some detail <a href="ontology.html">here</a>.
-Clicking on one of the listed properites invokes the Explore
+Clicking on one of the listed properities invokes the Explore
 display for that specific property which, in turn, gives you access to both (i) the
-types “definition material”from the ontology that is available in the repository and (ii) to
-its specific instances. For instance, choosing “vocab:hasCentury” generates a number of
+property's “definition material” from the ontology that is available in the repository and (ii)
+its specific usages. For instance, choosing “vocab:hasCentury” generates a number of
 triples about the hasCentury property, followed by the list of
 triples in PoMS that use the hasCentury property.</p>
 
 <h3 id="explore">Explore Display</h3>
+<p>To use Explore explicitly yourself, type in the URI (either in the full form, e.g. "<code>&lt;http://www.poms.ac.uk/rdf/entity/Person/1&gt;</code>", or using the qname format, e.g."<code>vocab:Person</code>") into the <i>Resource</i> field, and push the enter key to submit it.</p>
 
 <p><img border=0 width=601 height=387 id="Picture 4" class="w3-border w3-padding"
 src="images/image004.png"></p>
 
 <p>The Explore Display displays RDF statements (triples) that make reference to
-the thing being explored. The screen above shows the beginning of the display
-for “vocab:Person”. Note that all the references to other URIs in the display
+the thing being explored. The screen above shows the beginning of the display that results
+from entering “<code>vocab:Person<code>”. Note that all the references to other URIs in the display
 are blue-and-underlined. Clicking on any of them redirects the Explore display
 to focus on the selected item. For example, we can see here the first of the
 Persons in PoMS, identified as <a
@@ -195,13 +196,14 @@ different URI by entering it into the Resource field and pushing the Enter key.<
 to explore the PoMS dataset as RDF data, and recommend that you work with it to
 get a feel for the data before you attempt to create a SPARQL query.</p>
 
+
 <h3 id="query">Query Display</h3>
 
 <p><img border=0 width=601 height=299 id="Picture 6" class="w3-border w3-padding"
 src="images/image006.png"></p>
 
 <p>The query display allows one to run a SPARQL (or alternatively the rather
-more specialised SeRQL) query against the PoMS Repository. Here is a query
+more specialised SeRQL) query against the PoMS Repository. Here is a SPARQL query
 that selects all women in PoMS and displays their URIs, their names, their
 ID number and their floruit dates:</p>
 
@@ -244,7 +246,7 @@ web-page mechanism described below in the section "<a href="javascript:jumpTo('S
 
 <p>PoMS’s rdf4j SPARQL processor supports all data selection and retrieval
 formats including “select”, “construct”, “describe” and “ask”. SPARQL based <i>data
-updating</i> mechanisms are, of course, not supported! Construct and Describe
+updating</i> mechanisms are, of course, not supported! <i>Construct</i> and <i>Describe</i>
 queries create sets of RDF triples, and they can be exported in various RDF
 forms such as RDF-XML, Turtle and JSON, plus others.</p>
 
@@ -271,18 +273,18 @@ mechanisms provided:</p>
 entities in PoMS’s RDF. Hence, although in the browser-based PoMS web app only
 certain kinds of PoMS data have associated URIs &#x2014; persons, for example; in the
 PoMS’s RDF representation, all PoMS entities possess URIs that identify them. 
-They all begin <i>http://romanrepublic.ac.uk/rdf/entity/</i>, and are then
+They all begin <i>http://www.poms.ac.uk/rdf/entity/</i>, and are then
 followed by the name of the type of entity they represent followed by a slash
 and the specific instance identifier &#x2014; either a number or sometimes a name. 
 Thus <a href="/rdf/entity/Person/1"><code>http://www.poms.ac.uk/rdf/entity/Person/1</code></a> 
 is the URI for a specific person (<i>William I, king of Scots (d.1214)</i>,
 mentioned earlier), <a href="/rdf/entity/TitleType/10"><code>http://romanrepublic.ac.uk/rdf/entity/TitleType/10</code></a>
 is the URI for the office of <i>chancellor</i>, and <a
-href="/rdf/entity/Gender/4"><code>http://www.poms.ac.uk/rdf/entity/Gender/4</code></a> is the URI for the gender of <i>Female</i>.</p>
+href="/rdf/entity/Plaace/1017"><code>http://www.poms.ac.uk/rdf/entity/Place/1017</code></a> is the URI for the Place named <i>Waddenshope</i>.</p>
 
 <p>It might at first seem unfortunate that these URIs are different
 in form from the RESTful URLs used in PoMS’s browser-oriented framework created
-outside of the RDF server to identify data about, say, a person. However, technical
+outside of the RDF server to identify data about, say, a person. We've just seen, for example, that the URI for RDF data for William I is <code>http://www.poms.ac.uk/rdf/entity/Person/1</code>. However, there is also a "permanent link" for William that points to the page about him on PoMS's browser-oriented website URL for the William as well: <code>https://www.poms.ac.uk/record/person/1/</code>. However, technical
 considerations seemed to make this in fact desirable, and one way to interpret this
 difference semantically is to consider the PoMS RDF-entity URI as the Linked
 Data URI identifier for the person, and the corresponding web-app URL that brings up the page about the
@@ -302,13 +304,12 @@ conventional web browser which will be stating that it accepts HTML. However,
 if the request comes with a recognized RDF data mime type specified in the HTML
 Accept header, then the data will be delivered in that format.</p>
 
-<p>To assist users who wish to use a browser as the way to send
-a PoMS URI entity to the server, but want data back directly rather than
+<p>It is not practical to specify an HTML Accept header item when using your browser! Thus, to assist users who wish to use a browser as the way to send a PoMS URI entity to the server, but want data back directly rather than
 through an intermediate HTML page, one can specify the <i>format</i> parameter,
 e.g.:</p>
 
 <p><a
-href="../entity/CharterType/19?format=application%2Fxml">http://romanrepublic.ac.uk/rdf/entity/CharterType/19?format=application%2Fxml</a></p>
+href="../entity/CharterType/19?format=application%2Fxml">http://www.poms.ac.uk/rdf/entity/CharterType/19?format=application%2Fxml</a></p>
 
 <p>The value of the format parameter should be the required
 mime type for the appropriate format for the rdf data. Here, the XML format
@@ -394,7 +395,7 @@ within that only queries via GET or query via POST with parameters.</p>
 provided using the <i>query</i> string parameter (as described in section 2.1
 of the Sparql 1.1 Protocol.?The <code><i>default-graph-uri</i></code> and <code><i>named-graph-uri</i></code> parameters
 specified in the protocol are not supported and are ignored if provided, since
-RDF data is not structured in terms of named graphs.</p>
+PoMS's RDF data is not structured in terms of named graphs.</p>
 
 <p>The PoMS rdf SPARQL Endpoint also
 supports a <i>format</i> parameter which can be used to specify what format
@@ -422,7 +423,7 @@ href="https://www.w3.org/TR/sparql11-results-json/">https://www.w3.org/TR/sparql
 <h3 id="mapapp">The <i>MapApp</i> demo</h3>
 <p>I have created a demo called <i>mapapp</i> which shows how
 the PoMS SPARQL endpoint might be used in practice. In the demo a Python
-script submits a query displaying geographic data against the PoMS data, and processes the resulting data it
+script submits a query extracts geographic data from the PoMS data, and processes the resulting data it
 receives from the RDF server into an interactive map generated as an HTML page
 using the <a href="https://leafletjs.com/">Leaflet</a> toolkit. You can find the materials for this demo <a href="/rdf/mapapp">here</a>.</p>
     </div>

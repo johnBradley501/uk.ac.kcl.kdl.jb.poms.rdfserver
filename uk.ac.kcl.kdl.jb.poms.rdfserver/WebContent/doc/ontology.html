@@ -76,7 +76,7 @@ we present an overall semantic conception for PoMS’s ontology. </p>
 classified as a &quot;factoid prosopography&quot; and thus follows the main
 principles of the factoid prosopography approach described at <u><a href="http://factoid-dighum.kcl.ac.uk/">http://factoid-dighum.kcl.ac.uk/</a></u>.
 Thus, PoMS’s ontology draws on important components of the ontology for factoid
-prosopography (OFP) presented there. See a description of this
+prosopography (FPO) presented there. See a description of this
 connection in the Class Hierarchy section, below.</p>
 
 <p>This documentation for the ontology is divided into three parts. </p>
@@ -86,20 +86,20 @@ connection in the Class Hierarchy section, below.</p>
      “Overview” there is a very brief description of PoMS's data model, which
      underpins its ontology.</li>
  <li>Then, in the class hierarchy section,
-     one gets an upper level view of the classes in PoMS’s ontology with
+     one gets an overall level view of the classes in PoMS’s ontology with
      information about what the meanings of PoMS’s classes are, and how these
-     classes are linked together through subclassing.</li>
+     classes are interconnected through subclassing.</li>
  <li>The next section (entitled &quot;Class
      Relationships&quot;) presents data relationships (what OWL calls “object
      properties”) that make up the relationships between PoMS's classes.</li>
  <li>In addition, a set of HTML pages have
      been generated from the owl file that present it in a somewhat more human-readable
      form.&nbsp; It contains information about all the data in the owl file,
-     thus, not only the “object property” and subclassing characteristics (also
-     described here), but the other properties that are strings and numbers
+     thus, not only the “object property” and subclassing characteristics (which are
+     described here), but the other properties that take strings and numbers as values and
      that represent other kinds of data for PoMS’s classes (what owl calls
      “data properties”) as well.&nbsp;&nbsp; You can find this <u><a
-     href="../../../data/workspace/uk.ac.kcl.kdl.jb.poms.rdfserver/WebContent/ontology/doc/index.html">here</a></u>.</li>
+     href="../ontology/doc/index.html" target="_blank">here</a></u>.</li>
 </ul>
 
 
@@ -108,7 +108,7 @@ connection in the Class Hierarchy section, below.</p>
 structured data model upon which PoMS's database was created, and which in turn
 is based on the factoid model. Thus, to understand PoMS's ontology, it is
 useful to first understand the simplified data structure diagram that is shown
-in the introduction to the OFP ontology at <a
+in the introduction to the FPO ontology at <a
 href="http://factoid-dighum.kcl.ac.uk/">http://factoid-dighum.kcl.ac.uk/</a>
 and is shown here:</p>
 
@@ -117,14 +117,14 @@ and is shown here:</p>
 
 <p>The central object in the figure is the <i>factoid</i>,
 and as the text accompanying this figure there says, “A factoid is a spot in a
-source that says something about a person or persons”, and a little later
+source that says something about a person or persons”, and a little later that
 &quot;the factoid acts as a structural nexus that connects together historical
 sources, persons (and person assemblages acting as persons), places and
 possessions, and various kinds of classification schemes (such as personal
 relationships, titles and offices, etc).&quot; Factoids are assertions made by
 historical sources about historical people. The ironic character of the name
 “factoid” is intentional. Historians well understand that rather direct
-statements of the kinds represented here can sometimes overly simplify a subtle
+statements of the kinds represented might well overly simplify what might be a subtle
 and complex reality.</p>
 
 <p>The structure shown here is simplified in
@@ -135,7 +135,7 @@ PoMS's ontology, and thus shown in both the ontology's class hierarchy and
 class relationship diagrams presented below. Furthermore, PoMS’s ontologyshares
 some of its structure and semantics with the more general Factoid
 Prosopography.  Thus, the PoMS ontology explicitly connects some of its
-entities to appropriate OFP entities.</p>
+entities to appropriate FPO entities.</p>
 
 <h3 id="class-hier">PoMS ontology class hierarchy</h3>
 <p>The figure below presents much of the PoMS
@@ -164,7 +164,7 @@ classes with names starting “:Thing…” represent important substructures of
 properties that are shared by various classes, and</li>
 
 <li>classes
-with prefixed names “ofp:” represent classes that appear in the factoid
+with prefixed names “fpo:” represent classes that appear in the factoid
 ontology described at <u><a
 href="http://factoid-dighum.kcl.ac.uk/">http://factoid-dighum.kcl.ac.uk/</a></u>,
 and are here because they are explicitly referenced, and thereby semantically
@@ -188,28 +188,29 @@ linked to classes in the PoMS ontology.</li>
      href="https://definedterm.com/authority_file_also_authority_list">https://definedterm.com/authority_file_also_authority_list</a></u>).
      In PoMS not only bibliographic objects are formed into authority lists,
      but other classification schemes as well. <i>:TransactionType</i>, for
-     example, has&nbsp; instances which are the names for the various kinds of
+     example, has&nbsp; instances which represent various kinds of
      transactions that have appeared in PoMS’s charters. PoMS has a rather long
-     list of different authority lists, so they are not shown in this class
+     list of different authority lists, so they are not listed in this class
      hierarchary figure.  However, they can all be seen in the class
      relationship diagram described in the next section of this document, and
      have text defining them attached to the PoMS ontology itself (as
      rfds:comment), and thus appear in the detailed PoMS ontology documentation
      pages generated by the <a
-     href="http://www.poms.ac.uk/rdf/ontology/doc/">OWLdoc</a> tool.</li>
+     href="http://www.poms.ac.uk/rdf/ontology/doc/">OWLdoc</a> tool. Furthermore, all
+	 Authority List class instances have a name, which is provided with the <code>:hasName</code> property.</li>
  <li><b>:Factoid</b>: As
      described earlier, a factoid is the spot in an historical text where
      something is asserted about an historical person or persons.  It is a key
      concept of <a
      href="http://factoid-dighum.kcl.ac.uk/">factoid prosopography</a>.
-     In PoMS factoid come in different kinds, and these different kinds are
+     In PoMS factoids come in different kinds, and these different kinds are
      represented as subclasses of <i>:Factoid</i>. <i>:RelationshipFactoid</i>
      is an assertion about a relationship between two people, <i>:TitleOccupartionFactoid</i>
      is an assertion that a person had a title, or was involved in an
      occupation.  There are two kinds of factoids that involve possessions. <i>:PossessionFactoid</i>
      represents a simple assertion that someone owned something, whereas <i>:TransactionFactoid</i>
      represents a legal transaction between people of a possession. 
-     Transactions are the main business of most charters, of course.</li>
+     Transactions, represented as TransactionFactoids, are the main business of most charters, of course.</li>
  <li><b>:Person</b>: of course,
      historical persons are a major class of object in any prosopography.  In
      the factoid model they represent the individuals that are referenced in
@@ -236,7 +237,7 @@ linked to classes in the PoMS ontology.</li>
      reference to, say, a person in a particular context of one of the factoids
      drawn from a particular source.  Instances of this class have, therefore,
      a place to record how the reference to that person or possession is
-     actually written in the source, and got s person reference, where needed,
+     actually written in the source, and, where needed,
      what role the person played in the thing represented by the factoid.  There
      are two subclasses: <i>:PersonReference</i> (for a reference to a person),
      and <i>:PossessionReference</i> (for a reference to a possession).</li>
@@ -244,7 +245,7 @@ linked to classes in the PoMS ontology.</li>
      an historical primary source. In PoMS, this is usually the source from
      which charters (sometimes more than one) and Seals/Matrices are drawn.
      PoMS has two types of sources which are represented here as subclasses of
-     :Source:
+     <i>:Source</i>:
  <ul>
   <li><b>:Charter:</b> the
       principal source for data in PoMS is surviving legal charters.  Thus,
@@ -255,7 +256,7 @@ linked to classes in the PoMS ontology.</li>
       established for a charter by PoMS are recorded by the property <i>:hasOption</i>
       which can occur multiple times for a single charter. All charters have
       identifiers as “Hammond numbers” assigned to them.</li>
-  <li><b>:Matrix</b>:<b> </b>In
+  <li><b>:Matrix</b>: In
       PoMS a matrix is the mould for a seal – the thing that is pressed against
       the hot wax in the sealing process.  Matrices, therefore, act as sources
       for historical information in their own right, and properties associated
@@ -271,7 +272,7 @@ subclasses of <i>owl:Thing</i> have names that start with the word “Thing”.�
 All these subclasses (other than <i>:ThingWithID</i>, which has been described above) are
 classes that are not directly expressed as relational database tables in their
 own right, but contain properties that provide certain semantic functions that
-more than one class/table make use of. The ones that appear in PoMS’s ontology
+more than one class/table make use of. In database terms, this function is provided by the provision of one or more attributes (table columns) that appear in more than one table, but in all contexts define the same kind of thing. The ones that appear in PoMS’s ontology
 are listed here.</p>
 
 <ul>
@@ -282,7 +283,7 @@ are listed here.</p>
      as a conceptual tree.  In the figure, this class has not been opened to
      show its subclasses, but if it had been opened one would seem that in PoMS
      the <i>:Place</i> and  <i>:Possession</i> classes are subclasses of <i>ThingOrganisedHierarchically</i>,
-     and therefore has a hierarchical organisation of their members. The
+     and therefore have a hierarchical organisation of their members. The
      properties that express this hierarchy derive from the “Nested Set”
      approach for representing hierarchies that can be mapped effectively to
      the relational data paradigm. See <a
@@ -319,9 +320,8 @@ are listed here.</p>
  <li><b>:ThingReferencingPlace</b>: Several
      entity types make explicit reference to geographic place (:Place) through
      a :hasPlace property. Those entities are, thus, subclasses of
-     :ThingReferencingPlace.  They are :Charter, :Factoid, :PossessionPrivilege
-     and ;TitleType. ShouldPossessionPlace be
-     included??</li>
+     :ThingReferencingPlace.  They are <i>:Charter</i>, <i>:Factoid</i>, <i>:PossessionPrivilege</i>
+     and <i>:TitleType</i>.</li>
 </ul>
 
 <h4>2.a Classes for Dates</h4>
@@ -333,8 +333,8 @@ and <i>:ThingWithDatingInformation</i>.</p>
 
 <p>For both these classes properties are
 associated them that represent assertions about dating.  These properties will
-be discussed shortly. These two properties act as superclasses for classes that
-contain dating information that is represented by these properties.</p>
+be discussed shortly. These two classes act as superclasses for classes that
+contain dating information that is represented by the properties that are associated with these classes.</p>
 
 <p><b>:ThingWithPossibleDateRange</b><i>. </i>This class is very
 straightforward, and has only a single property associated with it: <i>:hasPossibleDateRange</i>,
@@ -345,7 +345,7 @@ subclasses (those classes that, therefore, make us of this property) are
 <p><b>:ThingWithDatingInformation</b> is more complex,
 and has :Factoid and :Source as its subclasses.  Thus, instances of these two
 classes can express dating information about themselves using the set of
-properties that <i>:ThingWithDatingInformation</i> provides.</p>
+properties that <i>:ThingWithDatingInformation</i> provides:</p>
 
 <ul>
 <li>Dating
@@ -374,13 +374,13 @@ class, such as <i>:Spring</i>.</li>
 
 <li><i>:hasFromModifier</i> and <i>:hasFromModifier2</i>
 are used to provide two bits of “modifier text” for the date.  In PoMS, only
-“cir” (for “circa”) has been used in :hasFromModifier, and “lat” (for “late) or
+“cir” (for “circa”) has been used in :hasFromModifier, and “lat” (for "late") or
 “ear” (for “early”), as in “late 1161” or “early 1302”.</li>
 </ul>
 </li>
 
-<li>Here
-are a set of properties for the “to date” that provide the same information as
+<li>There are also
+a set of properties for the “to date” that provide the same information as
 the corresponding properties listed above for the “from date They have, not
 surprisingly, the word “to” in each name replacing “from”; <i>:hasToday</i>,
 <i>:hasToMonth</i>, and so on.</li>
@@ -404,10 +404,6 @@ describes a probable date, e.g. “prob. shortly after 24/May/1153”.</li>
 <li><b>:isUndated</b>: indicates the document is undated or undateable</li>
 </ul>
 
-<p>Other relational database classes that
-contain dating information are specified in the PoMS ontology as being
-subclasses of these two “Thing” classes.</p>
-
 <p>You will have noted that not all the
 classes in the hierarchical class figure are described above. Furthermore, only
 a very limited number of associated properties are mentioned in this text. A
@@ -422,28 +418,20 @@ Classes in PoMS’s ontology and shows how they relate to each other through owl
 <p><a href="images/ontology-diagram.png" target="blank"><img border=0 width=800 src="images/ontology-diagram.png"></a></p>
 
 <p>When studying this figure, you should
-first note that it is meant to be a broad overview of the classes, and leaves
+first note that it is meant to show only a broad overview of the classes, and leaves
 out many details. For example, no owl:DataProperties are shown in the diagram, and the
 SubClassing hierarchy is not fully shown either. Nonetheless, a broad
 overview is helpful if you are trying to grasp the structure overall.</p>
 
-<p>First, about the legend (bottom  left
-corner). As it tells you:</p>
+<p>First, about the legend (bottom  left corner). As it tells you:</p>
 
 <ul>
- <li>the double-line arrows show SubClass-&gt;SuperClass
-     connections between classes, with the arrow head placed at the SuperClass
-     end of each connection.</li>
- <li>the single line arrows show
-     connections between Classes defined by owl:ObjectProperties. The
-     name of the property is shown on each line, and the arrow head end is the
-     “range” part of the relationship.</li>
  <li>the boxes represent Classes, and three colours are in use:
  <ul>
   <li>The green boxes represent classes
-      from the OFP ontology (see <u><a
+      from the FPO ontology (see <u><a
       href="http://factoid-dighum.kcl.ac.uk/">http://factoid-dighum.kcl.ac.uk/</a>)</u>.
-      By connecting some of PoMS’s classes with classes in the OFP, we intend
+      By connecting some of PoMS’s classes with classes in the FPO, we intend
       to show how the PoMS data works as a factoid prosopography.</li>
   <li>The red boxes represent classes that
       are authority lists.  As described above, authority list items are
@@ -452,20 +440,28 @@ corner). As it tells you:</p>
       semantic classes in the PoMS ontology, which in turn represent the major
       semantic elements in the PoMS database data structure.</li>
  </ul></li>
+ <li>the double-line arrows show SubClass-&gt;SuperClass
+     connections between classes, with the arrow head placed at the SuperClass
+     end of each connection. Properties associated with a SuperClass will also be
+	 available to the SubClass.</li>
+ <li>the single line arrows show
+     connections between Classes defined by owl:ObjectProperties. The
+     name of the property is shown on each line, and the arrow head end is the
+     “range” part of the relationship.</li>
 </ul>
 <h4>A Guided Tour</h4>
 
-<p>The class relationship diagram just
-provided shows the classes in the PoMS ontology as coloured boxes (representing
+<p>As its legend says, the class relationship diagram showing here 
+shows the classes in the PoMS ontology as coloured boxes (representing
 PoMS’s data Classes) with two types of arrows connecting them.&nbsp; In this
 section, we will focus on the significance of the single line, named, arrows,
-which present Class connections expressed by the owl:ObjectProperty mechanism. The
-reader may have noted the “:” before class names in this diagram.&nbsp; This
+which present Class connections expressed by the <i>owl:ObjectProperty</i> mechanism. The
+reader may have noted the “:” before class names in this diagram. In this context, this
 implies the base URI prefix for PoMS’s ontology that applies to all the items
 in the diagram: <a
 href="http://www.poms.ac.uk/rdf/ontology">http://www.poms.ac.uk/rdf/ontology#</a></p>
 
-<p>In the ontology itself, this URI is given
+<p>In some the other parts of this documentation, this PoMS ontology URI is specified using
 the prefix “vocab:”, although in the following discussion the <i>vocab:</i>
 prefix is left out purely for the sake of compactness.</p>
 
@@ -489,38 +485,36 @@ PoMS’s :Person class is a subclass of FPO’s Person class. This tells us that
 of the direct connections between PoMS and the FPO is through its person class.</li>
 
 <li>Shown above
-the :Person class is a collection of six classes that represent types of
-“persons” in PoMS, represented as subclasses of the more general :Person
+the <i>:Person</i> class is a collection of six classes that represent types of
+“persons” in PoMS, represented as subclasses of the more general <i>:Person</i>
 class.  In the PoMS data almost all people are asserted to be members of one of
-these classes, rather than :Person directly.</li>
+these subclasses, rather than :Person directly.</li>
 
-<li>There
-are four kinds of OWL Data Properties that are associated with :Person, and
+<li>There are four kinds of OWL Data Properties that are associated with :Person, and
 they are:
 <ul>
-<li>:hasFloruitLow and
-:hasFloruitHi, which together provide a general life date range for the person,</li>
+<li><i>:hasFloruitLow</i> and
+<i>:hasFloruitHi</i>, which together provide a general life date range for the person,</li>
 
-<li>:hasMedievalGaelicForename,
+<li><i>:hasMedievalGaelicForename</i>,
 which specifies the historic Gaelic forename for the person, as specified in
-the :MedievalGaelicForename authority list, and</li>
+the <i>:MedievalGaelicForename</i> authority list, and</li>
 
-<li>:hasModernGaelicForename,
-which specifies that one of the names in :ModernGaelicForename is the
+<li><i>:hasModernGaelicForename</i>,
+which specifies that one of the names in <i>:ModernGaelicForename</i> is the
 modern-day representation of this person’s name.</li>
 </ul></ul>
 
-<p>For example, one of the triples one can
-find in the data set is:</p>
+<p>For example, one of the triples one can find in the data set is:</p>
 
 <code>&lt;<a href="http://www.poms.ac.uk/rdf/entity/Person/10">http://www.poms.ac.uk/rdf/entity/Person/10</a>&gt;<br>
 :hasModernGaelicForename<br>
 &lt;<a href="http://www.poms.ac.uk/rdf/entity/ModernGaelicforename/38">http://www.poms.ac.uk/rdf/entity/ModernGaelicforename/38</a>&gt;
 </code>
 
-<p>Where …./Person/10 is the URI for a
+<p>Where <code>…./Person/10</code> is the URI for a
 particular person, in this case <i>Reginald, bishop of Ross (d.1213)</i>, and
-…/ModernGaelicforename/38 is the authority list entry for <i>Raghnall</i>.</p>
+<code>…/ModernGaelicforename/38</code> is the authority list entry for <i>Raghnall</i>.</p>
 
 <h5>Factoids</j5>
 
@@ -532,17 +526,17 @@ diagram focuses on classes related to factoids:</p>
 <p><img border=0 width=602 src="images/factoid.png"></p>
 
 <p>One can find the <i>:Factoid</i> class in
-the top, centre, of this diagram. Factoids say things about people, and the <i>:Reference</i>
-class provides the linking mechanism between factoids and persons. :Reference is described below (and
-as one will see there, in PoMS <i>:Reference</i> also provides links to possessions).
+the top centre of this diagram. Factoids say things about people, and the <i>:Reference</i>
+class provides the linking mechanism between factoids and persons. <i>:Reference</i> is described below (and
+as one will see there, in PoMS <i>:Reference</i> also provides links to possessions as well as persons).
 </p>
 
 <p>There are several subclasses of <i>:Factoid</i>
 that reflect the different kinds of factoids that PoMS holds:</p>
 <ul>
 <li><i>:RelationshipFactoid</i> asserts personal
-relationships that the sources identify between two people (e.g. William
-Boswell <u>is husband of</u> Isabel of Merlington). This is essentially the
+relationships that the sources identify between two people (e.g. "William
+Boswell <u>is husband of</u> Isabel of Merlington"). This is essentially the
 same as FPO’s <i>fpo:RelationshipFactoid</i>.  The particular relationship
 being asserted is provided through the <i>:hasRelationship</i> property, which
 connects to the <i>:RelationshipType</i> authority list. Relationships in <i>:RelationshipType</i>
@@ -606,11 +600,11 @@ FPO’s <i>fpo:hasNameInSourceAs</i>.</p>
 <p>In PoMS the idea of Reference as it is
 represented in FPO is expanded to include not only references to historical
 persons, but references to possessions too. Thus, there are two subclasses to
-:Reference:</p>
+<i>:Reference</i>:</p>
 
 <ul>
 <li><i>:PersonReference</i> asserts the
-connection between the factoid and a person represented as :Person. This is
+connection between the factoid and a person represented as <i>:Person</i>. This is
 done with its property <i>:referencesPerson</i>, which is a subproperty of
 FPO’s <i>fpo:reference</i>. Note that factoids often refer to more than one
 person, and if so, each person is likely to have a particular role in what the
@@ -620,7 +614,7 @@ at one of the roles in the authority list <i>:Role</i>.</li>
 
 <li><i>:PossessionReference</i> asserts the
 connection between the factoid and a possession represented as :Possession.
-This is done through its property <i>:referencesPossession</i>.</li>
+This is done through its property <i>:referencesPossession</i>. PoMS did not record a concept parallel to :Role for possessions.</li>
 </ul>
 
 <h5>Sources</h5>
@@ -635,29 +629,28 @@ the class relationship diagram in the upper right corner:</p>
 a subclass of FPO’s <i>fpo:Source</i> class.</p>
 
 <p>As shown in the Class Hierarchy discussion
-earlier, PoMS has two kinds of sources.  The overwhelmingly most prominent kind of
-source is the legal charters (represented through the <i>:Charter</i> subclass),
+earlier, PoMS has two kinds of sources.  Overwhelmingly, the most prominent kind of
+source is the legal charter (represented through the <i>:Charter</i> subclass),
 but the seal matrices also provide an historical source as well (<i>:Matrix</i>
 subclass).</p>
 
 <ul>
 <li>A
 <i>:Source</i> is written in a language, and its <i>:hasLanguage</i> property
-will link to the :Language authority list.</li>
+will assert this, and links to the :Language authority list.</li>
 
-<li>PoMS
-also classifies sources according to a grantor category, and this is specified
+<li>PoMS also classifies sources according to a grantor category, and this is specified
 by the <i>:hasGrantorCategory</i> property.</li>
 </ul>
 
 <p>Both <i>:Matrix</i> and <i>:Charter</i> have a number of
-data properties to allow information about them to be recorded, and these are
-not shown here.  Of these, of particular interest is the Hammond Number classification
+data properties which allow information about them to be recorded, and most of these are
+not shown here.  Of these, however, of particular interest is the Hammond Number classification
 scheme for charters <i>:hasHammondNumber</i> and other properties with names
 beginning “hasHammond…”.</p>
 
 <p><i>:Matrix</i> instances can record the matrix
-shape through the :hasShape property.</p>
+shape through the <i>:hasShape</i> property.</p>
 
 <p>A <i>:Charter</i> instance is assigned a charter
 type, which is recorded with the <i>:hasCharterType</i> property. Each instance may
@@ -696,8 +689,8 @@ associated with a range of different classes of objects:</p>
 <li>Place is an authority list in its own right.</li>
 
 <li>Although
-not evident here, Place allows its items to be organised hierarchically, so
-that one place can be indicated to be inside another (Glasgow Cathedral is
+not evident here, Place is a <i>:ThingOrganisedHierarchically</i>, and thus allows its items to be organised hierarchically, so
+that one place can be indicated to be geographically inside another (Glasgow Cathedral is
 inside Glasgow, for example)</li>
 
 <li><i>:Place</i> is referenced
@@ -705,7 +698,7 @@ from many other classes through the <i>:hasPlace</i> property.  Classes with
 the <i>:hasPlace</i> property are also members of the <i>:ThingReferencingPlace</i>
 class.</li>
 
-<li>Many places have an associated geographic point, expressed as Longitude and Latitude in
+<li>Many places, but not all, have an associated geographic point, expressed as Longitude and Latitude in
 two ways: (i) through the <i>:hasGeographicLongitude</i> and <i>:hasGeographicLatitude</i>
 properties, and (ii) through the <i>:hasGeoData</i> property, which gives the location
 of the point using wktLiteral notation, e.g. “<code>POINT(55.953 -3.189)</code>”. Even for
@@ -713,8 +706,8 @@ places which might be thought of as better represented as an area rather than a
 point (e.g. cities, or counties), PoMS has only a point coordinate.</li>
 </li>
 
-<li>The wktLiteral string ssoiated with the <i>:hasGeoData</i> property is given
-the datatype of <code>geo:wktLiteral</code>, and so is available to be
+<li>The wktLiteral string associated with the <i>:hasGeoData</i> property is given
+the datatype of <code>geo:wktLiteral</code>. This makes it available to be
 used as data in queries involving rdf4j’s implementation of GeoSPARQL. (About GeoSPARQL in rdf4j see
 pages at <a
 href="https://github.com/eclipse/rdf4j-doc/blob/master/doc/programming/06-geosparql.adoc">GitHub</a>

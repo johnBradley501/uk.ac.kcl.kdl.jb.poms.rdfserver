@@ -1,7 +1,7 @@
 @prefix : <http://www.poms.ac.uk/rdf/ontology#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
-@prefix opf: <https://github.com/johnBradley501/FPO/raw/master/fpo.owl#> .
+@prefix fpo: <https://github.com/johnBradley501/FPO/raw/master/fpo.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -13,7 +13,7 @@
 	owl:versionInfo "1.0"^^xsd:decimal ;
 	dc:description "An ontology for the data created by the People of Medieval Scotland project (see http://www.poms.ac.uk).  The major data repository for the work of the PoMS project was a relational database.  This ontology provides a definition of an RDF expression of the data in that database." ;
 	dc:rights "Creative Commons Attribution-NonCommercial 4.0 International License." ;
-	dc:contributor "Matthew Hammond, Dauvit Broun" ;
+	dc:contributor "Matthew Hammond (History, King's College London), Dauvit Broun (History, University of Glasgow)" ;
 	rdfs:comment "An ontology for the data created by the People of Medieval Scotland project (see http://www.poms.ac.uk).  The major data repository for the work of the PoMS project was a relational database.  This ontology provides a definition for the RDF expression of the data in that database." ;
 	dc:creator "John Bradley (King's Digital Lab, King's Collage London)" ;
 	dc:title "Ontology for PoMS data" .
@@ -89,7 +89,7 @@
 # http://www.poms.ac.uk/rdf/ontology#hasFactoid
 
 :hasFactoid a owl:ObjectProperty ;
-	owl:inverseOf opf:hasReference ;
+	owl:inverseOf fpo:hasReference ;
 	rdfs:domain :Reference ;
 	rdfs:range :Factoid ;
 	rdfs:comment "This reference comes from this particular ;Factoid" .
@@ -314,7 +314,7 @@
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasReference
 
-opf:hasReference a owl:ObjectProperty .
+fpo:hasReference a owl:ObjectProperty .
 # 
 # 
 # 
@@ -363,7 +363,7 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#hasExtra
 
 :hasExtra a owl:DatatypeProperty ;
-	rdfs:domain :PossessionPrivilege ;
+	rdfs:domain :Possession ;
 	rdfs:range xsd:integer .
 # 
 # http://www.poms.ac.uk/rdf/ontology#hasFirmDate
@@ -1048,8 +1048,8 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#Factoid
 
 :Factoid a owl:Class ;
-	rdfs:subClassOf :ThingReferencingPlace , :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , opf:Factoid ;
-	rdfs:comment "In PoMS a :Factoid represents a place in a historical source (usually a legal charter) where something is said about a person or a group persons.  This is semantically the idea behind the opf:Factoid as well, thus this :Factoid class is a subclass of opf:Factoid." .
+	rdfs:subClassOf :ThingReferencingPlace , :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , fpo:Factoid ;
+	rdfs:comment "In PoMS a :Factoid represents a place in a historical source (usually a legal charter) where something is said about a person or a group persons.  This is semantically the idea behind the fpo:Factoid as well, thus this :Factoid class is a subclass of fpo:Factoid." .
 # 
 # http://www.poms.ac.uk/rdf/ontology#FactoidInvolvingPossession
 
@@ -1146,14 +1146,14 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#Person
 
 :Person a owl:Class ;
-	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithID , :ThingWithPossibleDateRange , opf:Person ;
+	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithID , :ThingWithPossibleDateRange , fpo:Person ;
 	rdfs:comment "An historical person or person-like entity that appears in the database" ;
 	rdfs:label "Person" .
 # 
 # http://www.poms.ac.uk/rdf/ontology#PersonReference
 
 :PersonReference a owl:Class ;
-	rdfs:subClassOf :Reference , :ThingThatCanBeOrdered , opf:PersonReference ;
+	rdfs:subClassOf :Reference , :ThingThatCanBeOrdered , fpo:PersonReference ;
 	rdfs:comment "A reference to a :Person within a :Factoid" ;
 	rdfs:label "Person Reference" .
 # 
@@ -1180,7 +1180,7 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#PossessionFactoid
 
 :PossessionFactoid a owl:Class ;
-	rdfs:subClassOf :FactoidInvolvingPossession , opf:PossessionFactoid ;
+	rdfs:subClassOf :FactoidInvolvingPossession , fpo:PossessionFactoid ;
 	rdfs:comment "the unique factoid embedding a specific possession in a transaction or source" .
 # 
 # http://www.poms.ac.uk/rdf/ontology#PossessionGeneral
@@ -1256,13 +1256,13 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#Reference
 
 :Reference a owl:Class ;
-	rdfs:subClassOf :ThingWithID , opf:Reference ;
+	rdfs:subClassOf :ThingWithID , fpo:Reference ;
 	rdfs:comment "In PoMS, a reference provides a link to a specific :Person or :Possession that is referenced in a :Factoid" .
 # 
 # http://www.poms.ac.uk/rdf/ontology#RelationshipFactoid
 
 :RelationshipFactoid a owl:Class ;
-	rdfs:subClassOf :Factoid , opf:RelationshipFactoid ;
+	rdfs:subClassOf :Factoid , fpo:RelationshipFactoid ;
 	rdfs:comment "the specific factoid showing a relationship between, and this linking, two or more individuals" .
 # 
 # http://www.poms.ac.uk/rdf/ontology#RelationshipMetaType
@@ -1323,7 +1323,7 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#Source
 
 :Source a owl:Class ;
-	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , opf:Source ;
+	rdfs:subClassOf :ThingWithAssociatedWebpage , :ThingWithDatingInformation , :ThingWithID , :ThingWithNotes , :ThingWithPossibleDateRange , fpo:Source ;
 	rdfs:comment "The document that provides the source material for the entry" ;
 	rdfs:label "Source" .
 # 
@@ -1395,7 +1395,7 @@ opf:hasReference a owl:ObjectProperty .
 # http://www.poms.ac.uk/rdf/ontology#TransactionFactoid
 
 :TransactionFactoid a owl:Class ;
-	rdfs:subClassOf :FactoidInvolvingPossession , opf:Transaction ;
+	rdfs:subClassOf :FactoidInvolvingPossession , fpo:Transaction ;
 	rdfs:comment "type of transaction, such as gift, sale, agreement, etc." .
 # 
 # http://www.poms.ac.uk/rdf/ontology#TransactionOption
@@ -1419,36 +1419,36 @@ opf:hasReference a owl:ObjectProperty .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Factoid
 
-opf:Factoid a owl:Class ;
+fpo:Factoid a owl:Class ;
 	rdfs:comment "A Factoid is a spot in a primary source where something is said about a Person or several people. This is the central conception of the \"factoid\" approach to prosopography." .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Person
 
-opf:Person a owl:Class .
+fpo:Person a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PersonReference
 
-opf:PersonReference a owl:Class .
+fpo:PersonReference a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PossessionFactoid
 
-opf:PossessionFactoid a owl:Class .
+fpo:PossessionFactoid a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Reference
 
-opf:Reference a owl:Class .
+fpo:Reference a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#RelationshipFactoid
 
-opf:RelationshipFactoid a owl:Class .
+fpo:RelationshipFactoid a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Source
 
-opf:Source a owl:Class .
+fpo:Source a owl:Class .
 # 
 # https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Transaction
 
-opf:Transaction a owl:Class .
+fpo:Transaction a owl:Class .
 # 
 # 
 # 

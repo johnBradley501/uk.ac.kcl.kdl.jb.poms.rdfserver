@@ -11,8 +11,8 @@
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
 	d2rq:jdbcDSN "jdbc:mysql:///poms";
-	d2rq:username "xxxxxxx";
-	d2rq:password "xxxxxxx";
+	d2rq:username "xxxxxxxx";
+	d2rq:password "yyyyyyyy";
 	jdbc:autoReconnect "true";
 	jdbc:zeroDateTimeBehavior "convertToNull";
 	.
@@ -5317,7 +5317,7 @@ map:TransTickBoxes a d2rq:ClassMap;
 map:transTickBoxesLabel a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:TransTickBoxes;
 	d2rq:property rdfs:label;
-	d2rq:pattern "TransTickBoxes #@@pomsapp_transtickboxes.name@@";
+	d2rq:pattern "Transaction Option: @@pomsapp_transtickboxes.name@@";
 	.
 map:transTickBoxesID a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:TransTickBoxes;

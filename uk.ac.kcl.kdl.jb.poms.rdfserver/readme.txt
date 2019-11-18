@@ -79,12 +79,12 @@ I.1.b) Creating final RDF triples with Python file
 A small Java program takes the RDF triple data created by dump-rdf and "cleans it up" by eliminating
 the many "empty" triples that dump-rdf creates.
 
-The Java program is in package "uk.ac.kcl.kdl.jb.rdf.util", and is called script is called RemoveEmpties.java. If you are
+The Java program is in package "uk.ac.kcl.kdl.jb.rdf.util", and is called RemoveEmpties.java. If you are
 using Eclipse, it is easiest to simply run it there.  As you can see from the code, it takes two parameters, the first is the
 path and name of the input file (created by step 1.a: <your path>/poms_dump.ttl, and the 2nd is the name of the file it is
 to generate. I suggest <your path>/poms_clean.ttl.
 
-I use these parameters to run this program:
+For example, I use these parameters to run this program:
 d:/research/PoMS-LOD/d2rq-0.8.1/poms_dump.ttl d:/research/PoMS-LOD/d2rq-0.8.1/poms_clean.ttl
 
 but the path you will need will doubtless be different.
@@ -163,6 +163,16 @@ Comments:
          not very many triples in it, this also takes some time: more than 20 minutes on my machine.
       -- Third, load the ontology file (renamed to poms_ont.ttl) This is the smallest file of all, but still takes
          about 40 minutes to load on my machine!!
+-- Here are the reports, including timings for the loading of the three files:
+   poms> load D:/research/poms-lod/d2rq-0.8.1/poms_clean.ttl
+   Loading data...
+   Data has been added to the repository (1802900 ms)
+   poms> load d:/research/poms-lod/d2rq-0.8.1/poms_geom.ttl
+   Loading data...
+   Data has been added to the repository (1166513 ms)
+   poms> load d:/research/poms-lod/Ontology/poms_ont.ttl
+   Loading data...
+   Data has been added to the repository (4749128 ms)
 
 
 
@@ -181,11 +191,11 @@ suitable WAR file can be readily exported from this Eclipse project.  I recommen
 called "rdf.war", and put in the project's folder.
 
 In the default version of this app, RDF data is fetched from /usr/local/etc/rdf4j.  Within this folder
-is the rdfj4 repository folder called "PoMS", which is used as the source for the RDF data to be served.
+is the rdfj4 repository folder called "poms", which is used as the source for the RDF data to be served.
 Both the folder for RDF repositories and the particular folder can be changed by editing file
 /WEB-INF/server.config.
 
-See information below about how to get data from PoMS's MySQL database into suitable RDF format.
+See information above (section I) about how to get data from PoMS's MySQL database into suitable RDF format.
 
 (II.a) URI mapping requirements
 ==============================
@@ -202,8 +212,8 @@ All of rdf4j's native functionality that is supported within PoMS RDF server sho
 "http://www.poms.ac.uk/rdf/repositories/poms"
 
 Thus, all URLs that this tomcat application serves begin "http://www.poms.ac.uk/rdf" 
-and the larger server environment needs to be set up so that "http://www.poms.ac.uk/rdf" 
-is passed to this PoMS web application.
+and the larger server environment needs to be set up so that URL's beginning "http://www.poms.ac.uk/rdf" 
+are passed to this PoMS web application.
 
 N.B.: It is important that all mapping from this URL prefix to whatever is needed to get the request
 to the web app should be done "behind the scenes", without changing the URL the user sees!!

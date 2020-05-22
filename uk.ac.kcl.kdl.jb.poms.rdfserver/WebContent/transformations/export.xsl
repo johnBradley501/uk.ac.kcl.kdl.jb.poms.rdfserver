@@ -15,39 +15,9 @@
 	<xsl:include href="table.xsl" />
 
 	<xsl:template match="sparql:sparql">
-		<form action="export">
-			<table class="dataentry">
-				<tbody>
-					<tr>
-						<th>
-							<xsl:value-of
-								select="$download-format.label" />
-						</th>
-						<td>
-							<select id="Accept" name="Accept">
-								<xsl:for-each
-									select="$info//sparql:binding[@name='graph-download-format']">
-									<option
-										value="{substring-before(sparql:literal, ' ')}">
-										<xsl:if
-											test="$info//sparql:binding[@name='default-Accept']/sparql:literal = substring-before(sparql:literal, ' ')">
-											<xsl:attribute
-												name="selected">true</xsl:attribute>
-										</xsl:if>
-										<xsl:value-of
-											select="substring-after(sparql:literal, ' ')" />
-									</option>
-								</xsl:for-each>
-							</select>
-						</td>
-						<td>
-							<input type="submit"
-								value="{$download.label}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
+			<p>Requesting an export of this server's data from this page has been disabled due to problems with very slow performance.
+			You can fetch a zip file containing files holding the RDF statements served by this server from KDL's CKAN site
+			<a href="https://data.kdl.kcl.ac.uk/dataset/people-of-medieval-scotland-project-1093-1371">here</a>.</p>
 		<form action="export">
 			<table class="dataentry">
 				<tbody>

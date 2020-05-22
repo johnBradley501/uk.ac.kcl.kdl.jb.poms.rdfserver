@@ -1,17 +1,13 @@
-# -*- coding: latin-1 -*-
-
 # This Python script demonstrates how to use PoMS RDF server to fetch data tailored to a particular query
 # and transform this data into an HTML display page. The page created takes data from the query and plots
 # it onto an interactive geographic map of Scotland created by the leaflet software: https://leafletjs.com/
 #
-# this version works with Python 3, and been tested with 3.8
-#
-#                ... John Bradley DDH/KDL/KDL    June 2019, rev. May 2020
+#                ... John Bradley DDH/KDL    June 2019
 
-import urllib.parse
-import urllib.request
+import urllib2
 import json
 import re
+import io
 
 path = "/research/PoMS-LOD/map/"
 fileName = "map.html"
@@ -22,7 +18,7 @@ uriBase = "http://www.poms.ac.uk/rdf/entity/"
 # this query finds places associated with properties involved in charters where
 # the grantor and beneficiary are both women.
 #
-query = """
+query = u"""
 PREFIX vocab: <http://www.poms.ac.uk/rdf/ontology#>
 select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI ?possName ?label ?lat ?long
 where {
@@ -58,17 +54,16 @@ def getData():
     # this query finds places associated with properties involved in charters where
     # the grantor and beneficiary are both women.
     #
-    values = {"query": query}
-    myheaders = {"Accept": "application/json"}
-    data = urllib.parse.urlencode(values)
-    
-    req = urllib.request.Request(urlBase+"?"+data, headers=myheaders)
-    response = urllib.request.urlopen(req)
-    rslt = json.loads(response.read())
+    url = urlBase+"?query="+urllib2.quote(query.strip())
+    req = urllib2.Request(url)
+    req.add_header('Accept', "application/json")
+    conn = urllib2.urlopen(req)
+    rslt = json.loads(conn.read())
+    conn.close()
     return rslt
 
 def genBoringBit1(out):
-    prefix = """<html>
+    prefix = u"""<html>
 <head>
 <title>Map test</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
@@ -99,7 +94,7 @@ def genBoringBit1(out):
 def genBoringBit2(out):
     q1 = re.sub(r"<", r"&lt;",query)
     q1 = re.sub(r">", r"&gt;",q1)
-    postfix = """
+    postfix = u"""
 </script>
 <h4>The Query</h4>
 <pre>"""+q1+u"""
@@ -141,25 +136,25 @@ def genInterestingBit(out, leafdata):
         iname = leafitem[0]
         lat = leafitem[1]
         long = leafitem[2]
-        rslt = "    var marker = L.marker(["+lat+", "+long+"]).addTo(mymap);\n"
-        popup = "<table width=600>"
+        rslt = u"    var marker = L.marker(["+lat+", "+long+"]).addTo(mymap);\n"
+        popup = u"<table width=600>"
         sep = ""
         for pcont in leafitem[3:]:
             popup = popup+sep
-            sep = '<tr><td colspan=2><hr></td></tr>'
+            sep = u'<tr><td colspan=2><hr></td></tr>'
             for pitem in pcont:
                name = pitem[0]
                val = pitem[1]
-               popup = popup+"<tr><th>"+name+"</th><td>"+val+u"</td></tr>"
-        popup = popup+"</table>"
+               popup = popup+u"<tr><th>"+name+u"</th><td>"+val+u"</td></tr>"
+        popup = popup+u"</table>"
         popup = re.sub(r'"',r'\\"',popup)
         popup = re.sub(r"\n",r"\\n", popup)
-        rslt = rslt+'    marker.bindPopup("'+popup+u'",{ maxWidth : 600});\n'
-        rslt = rslt+'    var tooltip = L.tooltip({permanent: true}).setContent("'+iname+u'");\n'
-        rslt = rslt+'    marker.bindTooltip(tooltip).openTooltip().closePopup();'
+        rslt = rslt+u'    marker.bindPopup("'+popup+u'",{ maxWidth : 600});\n'
+        rslt = rslt+u'    var tooltip = L.tooltip({permanent: true}).setContent("'+iname+u'");\n'
+        rslt = rslt+u'    marker.bindTooltip(tooltip).openTooltip().closePopup();'
         out.write(rslt)
 
-out = open(path+fileName,"w", encoding='utf-8')
+out = io.open(path+fileName,"w", encoding='utf-8')
 genBoringBit1(out);
 data = getData()
 leafdata = processData(data)

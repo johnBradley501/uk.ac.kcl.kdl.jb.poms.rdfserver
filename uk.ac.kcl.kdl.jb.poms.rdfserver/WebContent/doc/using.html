@@ -252,12 +252,11 @@ forms such as RDF-XML, Turtle and JSON, plus others.</p>
 
 <h3 id="export">Export Display</h3>
 
-<p><img border=0 width=601 height=288 id="Picture 9" class="w3-border w3-padding"
-src="images/image008.png"></p>
-
-<p>The Export Display is a mechanism provided to allow you to
-fetch the entire set of PoMS triples. Note the choices for data formats:
-RDF-XML, Turtle, N3, RDF-JSON, TriG, N-Quads, Binary RDF, TriX and JSON-LD.</p>
+<p>The Export Display is a mechanism provided by the rdf4j workbench to allow you to
+fetch the entire set of PoMS triples. Because of performance implications, we discourage use of the Export display.  Instead, a ZIP file containing
+the RDF statements that make up the data for the PoMS RDF server can be found at KDL's CKAN server at
+<a href="https://data.kdl.kcl.ac.uk/dataset/people-of-medieval-scotland-project-1093-1371">https://data.kdl.kcl.ac.uk/dataset/people-of-medieval-scotland-project-1093-1371</a>.
+Please fetch the data from there instead.</p>
 
 <h2>Services available that generate raw data</h2>
 
@@ -383,7 +382,8 @@ tuples or RDF statements &#x2014; rather than mediated through HTML pages.</p>
 <p>The SPARQL Endpoint is available
 at:</p>
 
-<p><a href="/rdf/endpoint">http://www.poms.ac.uk/rdf/endpoint</a></p>
+<p><a href="/rdf/endpoint">http://www.poms.ac.uk/rdf/endpoint</a><br/>
+or <a href="https://www.poms.ac.uk/rdf/endpoint">https://www.poms.ac.uk/rdf/endpoint</a></p>
 
 <p>and follows a somewhat stripped
 down version of the SPARQL Endpoint guidelines described at <a
@@ -393,7 +393,7 @@ within that only queries via GET or query via POST with parameters.</p>
 
 <p>Thus, the SPARQL query must be
 provided using the <i>query</i> string parameter (as described in section 2.1
-of the Sparql 1.1 Protocol.?The <code><i>default-graph-uri</i></code> and <code><i>named-graph-uri</i></code> parameters
+of the Sparql 1.1 Protocol. The <code><i>default-graph-uri</i></code> and <code><i>named-graph-uri</i></code> parameters
 specified in the protocol are not supported and are ignored if provided, since
 PoMS's RDF data is not structured in terms of named graphs.</p>
 
@@ -402,9 +402,16 @@ supports a <i>format</i> parameter which can be used to specify what format
 should be used to generate results. It can be used when it is not convenient
 to use the HTTP request header Accepts mechanism, described below.</p>
 
+<p><b>N.B.</b>: It has been found that some applications have problems with the endpoint as it has been set up at King's.
+In certain situations a query wiil fail with an HTTP Error 500. In particular, this appears to be happen with Python 3's 
+<code>urllib</code> library when it is used to submit a <code>POST</code> request to 
+<code>http://www.poms.ac.uk/rdf/endpoint</code> (although a <code>GET</code> request works correctly). 
+If you experience this problem, we suggest that you either convert the request to a GET request, or alternatively
+try the POST request with the <code>https:</code> protocol instead, which seems to work without problems.</b></p>
+
 <h4>Response Formats</h4>
 
-<p>You can use your http request "Accepts" header to tell this SPARQL endpoint
+<p>You can use your http request "Accepts" header (or the "format" parameter) to tell this SPARQL endpoint
 processor what format to use to generate its results. The possible result formats depend on the type of
 query run. If the query generates RDF statements (<i>construct</i> and <i>describe</i>)
 the formats available are those listed in the section <i>Mime Types for RDF

@@ -15,30 +15,30 @@ import re
 
 path = "/research/PoMS-LOD/map/"
 fileName = "map.html"
-urlBase = "http://www.poms.ac.uk/rdf/endpoint"
-uriBase = "http://www.poms.ac.uk/rdf/entity/"
+urlBase = "https://www.poms.ac.uk/rdf/endpoint"
+uriBase = "https://www.poms.ac.uk/rdf/entity/"
 
 #
 # this query finds places associated with properties involved in charters where
 # the grantor and beneficiary are both women.
 #
 query = """
-PREFIX vocab: <http://www.poms.ac.uk/rdf/ontology#>
+PREFIX vocab: <https://www.poms.ac.uk/rdf/ontology#>
 select ?grantor ?grantorURI ?factoid ?beneficiary ?beneURI ?possName ?label ?lat ?long
 where {
  ?grantorURI a vocab:HistoricalFemale;
    vocab:hasID ?id;
    vocab:hasPersonDisplayName ?grantor.
  ?areference vocab:referencesPerson ?grantorURI;
-    vocab:hasRole <http://www.poms.ac.uk/rdf/entity/Role/5>;
+    vocab:hasRole <https://www.poms.ac.uk/rdf/entity/Role/5>;
     vocab:hasFactoid ?factoid.
   ?factoid a vocab:TransactionFactoid.
   ?breference vocab:hasFactoid ?factoid;
-    vocab:hasRole <http://www.poms.ac.uk/rdf/entity/Role/7>;
+    vocab:hasRole <https://www.poms.ac.uk/rdf/entity/Role/7>;
     vocab:referencesPerson ?beneURI.
   ?beneURI a vocab:HistoricalFemale;
      vocab:hasPersonDisplayName ?beneficiary.
-  MINUS{?breference vocab:referencesPerson <http://www.poms.ac.uk/rdf/entity/Person/710>}
+  MINUS{?breference vocab:referencesPerson <https://www.poms.ac.uk/rdf/entity/Person/710>}
   ?possref a vocab:PossessionReference;
       vocab:hasFactoid ?factoid;
       vocab:referencesPossession ?possession.

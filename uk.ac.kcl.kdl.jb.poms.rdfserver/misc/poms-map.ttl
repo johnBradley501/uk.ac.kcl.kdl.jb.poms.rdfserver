@@ -1,6 +1,6 @@
 @prefix map: <#> .
 @prefix db: <> .
-@prefix vocab: <http://www.poms.ac.uk/rdf/ontology#> .
+@prefix vocab: <https://www.poms.ac.uk/rdf/ontology#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1201,14 +1201,14 @@ map:FactoidType a d2rq:PropertyBridge;
 	d2rq:property rdf:type;
 	d2rq:uriColumn "pomsapp_factoid.inferred_type";
 	d2rq:translateWith map:FactoidTypeTable;
-#	d2rq:pattern "http://www.poms.ac.uk/ontology#@@pomsapp_factoid.inferred_type@@"; 
+#	d2rq:pattern "https://www.poms.ac.uk/ontology#@@pomsapp_factoid.inferred_type@@"; 
 	d2rq:belongsToClassMap map:Factoid
 	.
 map:factoidAssociatedURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Factoid;
 	d2rq:property vocab:hasAssociatedWebpage;
 	d2rq:propertyDefinitionLabel "associated Webpage for Factoid";
-        d2rq:uriPattern "http://www.poms.ac.uk/record/factoid/@@pomsapp_factoid.id@@/";
+        d2rq:uriPattern "https://www.poms.ac.uk/record/factoid/@@pomsapp_factoid.id@@/";
 	.
 map:factoidLabel a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Factoid;
@@ -2971,7 +2971,7 @@ map:personAssociatedURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Person;
 	d2rq:property vocab:hasAssociatedWebpage;
 	d2rq:propertyDefinitionLabel "associated Webpage for Person";
-        d2rq:uriPattern "http://www.poms.ac.uk/record/person/@@pomsapp_person.id@@/";
+        d2rq:uriPattern "https://www.poms.ac.uk/record/person/@@pomsapp_person.id@@/";
 	.
 map:PersonType a d2rq:PropertyBridge;
 	d2rq:property rdf:type;
@@ -3278,7 +3278,7 @@ map:placeAssociatedURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Place;
 	d2rq:property vocab:hasAssociatedWebpage;
 	d2rq:propertyDefinitionLabel "associated Webpage for Place";
-        d2rq:uriPattern "http://www.poms.ac.uk/record/place/@@pomsapp_place.id@@/";
+        d2rq:uriPattern "https://www.poms.ac.uk/record/place/@@pomsapp_place.id@@/";
 	.
 
 #map:placeEditedrecord a d2rq:PropertyBridge;
@@ -4846,7 +4846,7 @@ map:sourceAssociatedURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Source;
 	d2rq:property vocab:hasAssociatedWebpage;
 	d2rq:propertyDefinitionLabel "associated Webpage for Source";
-        d2rq:uriPattern "http://www.poms.ac.uk/record/source/@@pomsapp_source.id@@/";
+        d2rq:uriPattern "https://www.poms.ac.uk/record/source/@@pomsapp_source.id@@/";
 	.
 #map:sourceEditedrecord a d2rq:PropertyBridge;
 #	d2rq:belongsToClassMap map:Source;

@@ -35,7 +35,7 @@
 					<div id="contentheader">
 					<table>
 						<tr>
-							<td><a href="http://www.poms.ac.uk" class="chlink">POMS Home</a></td>
+							<td><a href="https://www.poms.ac.uk" class="chlink">POMS Home</a></td>
 						</tr>
 						<tr>
 							<td><a href="/rdf/doc/index.html" class="chlink">POMS RDF Documentation</a></td>

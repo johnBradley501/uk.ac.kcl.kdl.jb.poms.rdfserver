@@ -22,11 +22,11 @@ by the query are shown in a popup that is displayed on the map.</p>
 is Gaelic.
 </p>
 <pre>
-PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/ontology#&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX vocab: &lt;https://www.poms.ac.uk/rdf/ontology#&gt;
+PREFIX rdfs: &lt;https://www.w3.org/2000/01/rdf-schema#&gt;
 select ?source ?sourceName ?factoid ?factName ?possession ?possName ?place ?label ?lat ?long
 where {
-  ?source vocab:hasLanguage &lt;http://www.poms.ac.uk/rdf/entity/Language/Gaelic&gt;
+  ?source vocab:hasLanguage &lt;https://www.poms.ac.uk/rdf/entity/Language/Gaelic&gt;
      rdfs:label ?sourceName.
   ?factoid vocab:hasSource ?source;
      rdfs:label ?factName;

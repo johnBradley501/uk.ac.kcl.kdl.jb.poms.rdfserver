@@ -36,8 +36,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif;}
     <a href="#" class="w3-bar-item w3-button w3-theme-l1">Using the Server</a>
     <a href="ontology.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">PoMS Ontology</a>
     <a href="sparql.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">SPARQL Examples</a>
-    <a href="http://www.romanrepublic.ac.uk" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">DPRR Home</a>
-    <a href="/rdf" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">DPRR RDF Server</a>
+    <a href="https://www.poms.ac.uk" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS Home</a>
+    <a href="/rdf" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white w3-right">PoMS RDF Server</a>
    </div>
 </div>
 
@@ -62,7 +62,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: sans-serif;}
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-blue" id="top">Using PoMS’s RDF server</h1>
 <p>In line with Linked Open Data principles, PoMS data is available through a range of RDF services
-over the WWW. The server for PoMS RDF data can be found at <a href="/rdf/">http://www.poms.ac.uk/rdf/</a>.</p>
+over the WWW. The server for PoMS RDF data can be found at <a href="/rdf/">https://www.poms.ac.uk/rdf/</a>.</p>
 
 <p>There one will find PoMS’s RDF server, which is based upon
 <i>rdf4j</i> technology in the form of a stripped down rdf4j workbench which provides
@@ -163,7 +163,7 @@ triples about the hasCentury property, followed by the list of
 triples in PoMS that use the hasCentury property.</p>
 
 <h3 id="explore">Explore Display</h3>
-<p>To use Explore explicitly yourself, type in the URI (either in the full form, e.g. "<code>&lt;http://www.poms.ac.uk/rdf/entity/Person/1&gt;</code>", or using the qname format, e.g."<code>vocab:Person</code>") into the <i>Resource</i> field, and push the enter key to submit it.</p>
+<p>To use Explore explicitly yourself, type in the URI (either in the full form, e.g. "<code>&lt;https://www.poms.ac.uk/rdf/entity/Person/1&gt;</code>", or using the qname format, e.g."<code>vocab:Person</code>") into the <i>Resource</i> field, and push the enter key to submit it.</p>
 
 <p><img border=0 width=601 height=387 id="Picture 4" class="w3-border w3-padding"
 src="images/image004.png"></p>
@@ -174,7 +174,7 @@ from entering “<code>vocab:Person</code>”. Note that all the references to o
 are blue-and-underlined. Clicking on any of them redirects the Explore display
 to focus on the selected item. For example, we can see here the first of the
 Persons in PoMS, identified as <a
-href="../entity/Person/1">http://www.poms.ac.uk/rdf/entity/Person/1</a>.
+href="../entity/Person/1">https://www.poms.ac.uk/rdf/entity/Person/1</a>.
 Clicking on that redirects the Explore display to look at the materials
 directly connected to this person:</p>
 
@@ -208,7 +208,7 @@ that selects all women in PoMS and displays their URIs, their names, their
 ID number and their floruit dates:</p>
 
 <pre class="w3-border w3-padding">
-PREFIX vocab: &lt;http://www.poms.ac.uk/rdf/entity/vocab/&gt;
+PREFIX vocab: &lt;https://www.poms.ac.uk/rdf/entity/vocab/&gt;
 
 select ?aperson ?pname ?id ?flStart ?flEnd
 where {
@@ -272,18 +272,18 @@ mechanisms provided:</p>
 entities in PoMS’s RDF. Hence, although in the browser-based PoMS web app only
 certain kinds of PoMS data have associated URIs &#x2014; persons, for example; in the
 PoMS’s RDF representation, all PoMS entities possess URIs that identify them. 
-They all begin <i>http://www.poms.ac.uk/rdf/entity/</i>, and are then
+They all begin <i>https://www.poms.ac.uk/rdf/entity/</i>, and are then
 followed by the name of the type of entity they represent followed by a slash
 and the specific instance identifier &#x2014; either a number or sometimes a name. 
-Thus <a href="/rdf/entity/Person/1"><code>http://www.poms.ac.uk/rdf/entity/Person/1</code></a> 
+Thus <a href="/rdf/entity/Person/1"><code>https://www.poms.ac.uk/rdf/entity/Person/1</code></a> 
 is the URI for a specific person (<i>William I, king of Scots (d.1214)</i>,
-mentioned earlier), <a href="/rdf/entity/TitleType/10"><code>http://romanrepublic.ac.uk/rdf/entity/TitleType/10</code></a>
+mentioned earlier), <a href="/rdf/entity/TitleType/10"><code>https://www.poms.ac.uk/rdf/entity/TitleType/10</code></a>
 is the URI for the office of <i>chancellor</i>, and <a
-href="/rdf/entity/Plaace/1017"><code>http://www.poms.ac.uk/rdf/entity/Place/1017</code></a> is the URI for the Place named <i>Waddenshope</i>.</p>
+href="/rdf/entity/Place/1017"><code>https://www.poms.ac.uk/rdf/entity/Place/1017</code></a> is the URI for the Place named <i>Waddenshope</i>.</p>
 
 <p>It might at first seem unfortunate that these URIs are different
 in form from the RESTful URLs used in PoMS’s browser-oriented framework created
-outside of the RDF server to identify data about, say, a person. We've just seen, for example, that the URI for RDF data for William I is <code>http://www.poms.ac.uk/rdf/entity/Person/1</code>. However, there is also a "permanent link" for William that points to the page about him on PoMS's browser-oriented website URL for the William as well: <code>https://www.poms.ac.uk/record/person/1/</code>. However, technical
+outside of the RDF server to identify data about, say, a person. We've just seen, for example, that the URI for RDF data for William I is <code>https://www.poms.ac.uk/rdf/entity/Person/1</code>. However, there is also a "permanent link" for William that points to the page about him on PoMS's browser-oriented website URL for the William as well: <code>https://www.poms.ac.uk/record/person/1/</code>. However, technical
 considerations seemed to make this in fact desirable, and one way to interpret this
 difference semantically is to consider the PoMS RDF-entity URI as the Linked
 Data URI identifier for the person, and the corresponding web-app URL that brings up the page about the
@@ -308,7 +308,7 @@ through an intermediate HTML page, one can specify the <i>format</i> parameter,
 e.g.:</p>
 
 <p><a
-href="../entity/CharterType/19?format=application%2Fxml">http://www.poms.ac.uk/rdf/entity/CharterType/19?format=application%2Fxml</a></p>
+href="../entity/CharterType/19?format=application%2Fxml">https://www.poms.ac.uk/rdf/entity/CharterType/19?format=application%2Fxml</a></p>
 
 <p>The value of the format parameter should be the required
 mime type for the appropriate format for the rdf data. Here, the XML format
@@ -321,25 +321,25 @@ for RDF was requested, and the user will receive data that starts like this:</p>
  This data is Copyright &#xa9; People of Medieval Scotland, 2018  (All rights reserved),
 and is made available under the Creative Commons License 'Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)' 
 --&gt;
-&lt;rdf:Description rdf:about=&quot;http://www.poms.ac.uk/rdf/entity/CharterType/19&quot;&gt;
-   &lt;directType rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/vocab/CharterType&quot;/&gt;
+&lt;rdf:Description rdf:about=&quot;https://www.poms.ac.uk/rdf/entity/CharterType/19&quot;&gt;
+   &lt;directType rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/vocab/CharterType&quot;/&gt;
    &lt;rdf:type rdf:resource=&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;/&gt;
    &lt;hasID rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#integer&quot;&gt;19&lt;/hasID&gt;
    &lt;hasName rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#string&quot;&gt;Memorandum&lt;/hasName&gt;
-   &lt;rdf:type rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/vocab/CharterType&quot;/&gt;
+   &lt;rdf:type rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/vocab/CharterType&quot;/&gt;
    &lt;label rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#string&quot;&gt;CharterType: Memorandum&lt;/label&gt;
 &lt;/rdf:Description&gt;
-&lt;rdf:Description rdf:about=&quot;http://www.poms.ac.uk/rdf/entity/Charter/1539&quot;&gt;
-   &lt;hasCharterType rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
+&lt;rdf:Description rdf:about=&quot;https://www.poms.ac.uk/rdf/entity/Charter/1539&quot;&gt;
+   &lt;hasCharterType rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
 &lt;/rdf:Description&gt;
-&lt;rdf:Description rdf:about=&quot;http://www.poms.ac.uk/rdf/entity/Charter/1750&quot;&gt;
-   &lt;hasCharterType rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
+&lt;rdf:Description rdf:about=&quot;https://www.poms.ac.uk/rdf/entity/Charter/1750&quot;&gt;
+   &lt;hasCharterType rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
 &lt;/rdf:Description&gt;
-&lt;rdf:Description rdf:about=&quot;http://www.poms.ac.uk/rdf/entity/Charter/2234&quot;&gt;
-   &lt;hasCharterType rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
+&lt;rdf:Description rdf:about=&quot;https://www.poms.ac.uk/rdf/entity/Charter/2234&quot;&gt;
+   &lt;hasCharterType rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
 &lt;/rdf:Description&gt;
-&lt;rdf:Description rdf:about=&quot;http://www.poms.ac.uk/rdf/entity/Charter/2236&quot;&gt;
-   &lt;hasCharterType rdf:resource=&quot;http://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
+&lt;rdf:Description rdf:about=&quot;https://www.poms.ac.uk/rdf/entity/Charter/2236&quot;&gt;
+   &lt;hasCharterType rdf:resource=&quot;https://www.poms.ac.uk/rdf/entity/CharterType/19&quot;/&gt;
 &lt;/rdf:Description&gt;
 [...]
 </pre>
@@ -382,8 +382,7 @@ tuples or RDF statements &#x2014; rather than mediated through HTML pages.</p>
 <p>The SPARQL Endpoint is available
 at:</p>
 
-<p><a href="/rdf/endpoint">http://www.poms.ac.uk/rdf/endpoint</a><br/>
-or <a href="https://www.poms.ac.uk/rdf/endpoint">https://www.poms.ac.uk/rdf/endpoint</a></p>
+<p><a href="/rdf/endpoint">https://www.poms.ac.uk/rdf/endpoint</a></p>
 
 <p>and follows a somewhat stripped
 down version of the SPARQL Endpoint guidelines described at <a
@@ -401,13 +400,6 @@ PoMS's RDF data is not structured in terms of named graphs.</p>
 supports a <i>format</i> parameter which can be used to specify what format
 should be used to generate results. It can be used when it is not convenient
 to use the HTTP request header Accepts mechanism, described below.</p>
-
-<p><b>N.B.</b>: It has been found that some applications have problems with the endpoint as it has been set up at King's.
-In certain situations a query wiil fail with an HTTP Error 500. In particular, this appears to be happen with Python 3's 
-<code>urllib</code> library when it is used to submit a <code>POST</code> request to 
-<code>http://www.poms.ac.uk/rdf/endpoint</code> (although a <code>GET</code> request works correctly). 
-If you experience this problem, we suggest that you either convert the request to a GET request, or alternatively
-try the POST request with the <code>https:</code> protocol instead, which seems to work without problems.</b></p>
 
 <h4>Response Formats</h4>
 

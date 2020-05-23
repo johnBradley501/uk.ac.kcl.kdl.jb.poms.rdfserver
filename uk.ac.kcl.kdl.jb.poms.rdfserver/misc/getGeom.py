@@ -30,13 +30,13 @@ c = db.cursor()
 c.execute("select id, ST_AsText(geom) from pomsapp_place where geom is not null")
 
 outfile = open(outfile_name, "w")
-outfile.write('@prefix vocab: <http://www.poms.ac.uk/rdf/ontology#> .\n')
+outfile.write('@prefix vocab: <https://www.poms.ac.uk/rdf/ontology#> .\n')
 outfile.write('@prefix geo: <http://www.opengis.net/ont/geosparql#> .\n')
 
 for row in c:
     id = row[0]
     txt = row[1]
-    outfile.write("<http://www.poms.ac.uk/rdf/entity/Place/"+str(id)+"> vocab:hasGeoData "+'"'+txt+'"^^geo:wktLiteral .\n')
+    outfile.write("<https://www.poms.ac.uk/rdf/entity/Place/"+str(id)+"> vocab:hasGeoData "+'"'+txt+'"^^geo:wktLiteral .\n')
 
 outfile.close()
 db.close()

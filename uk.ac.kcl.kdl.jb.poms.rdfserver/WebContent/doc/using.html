@@ -208,7 +208,7 @@ that selects all women in PoMS and displays their URIs, their names, their
 ID number and their floruit dates:</p>
 
 <pre class="w3-border w3-padding">
-PREFIX vocab: &lt;https://www.poms.ac.uk/rdf/entity/vocab/&gt;
+PREFIX vocab: &lt;https://www.poms.ac.uk/rdf/ontology#&gt;
 
 select ?aperson ?pname ?id ?flStart ?flEnd
 where {
@@ -291,7 +291,7 @@ person as the URI for the web document <i>about</i> the person.</p>
 
 <p>All of PoMS’s RDF-based URIs can be passed to the WWW as
 URLs from anywhere in the world and (as a natural consequence of the way the
-http protocol and WWW works) will be directed to the PoMS RDF Server, where
+http(s) protocols and WWW works) will be directed to the PoMS RDF Server, where
 they will be interpreted as requests for data about the particular entity, thus
 conforming to Bizer, Heath and Berners-Lee’s 3<sup>rd</sup> principle of Linked
 Data. As their 3rd principle suggests, the data will be delivered as RDF.

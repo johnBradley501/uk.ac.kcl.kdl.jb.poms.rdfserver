@@ -30,21 +30,21 @@ import org.eclipse.rdf4j.repository.manager.RepositoryManager;
 /**
  * provides a holder for a shared RepositoryManager. It gets its information about what data source to use from
  * the file /WEB-INF/server.config, and holds an instance of a org.eclipse.rdf4j.repository.manager.RepositoryManager
- * that any DPRR (or rdf4j) class can get at and use.
+ * that any KDL RDF Server (or rdf4j) class can get at and use.
  * This class also provides access to the strings in server.config that define where the data collection is, and
  * which repository is to be used within it.
  *
  * This class is used both by classes written specifically for
- * the DPRR RDF Server, and by the (slightly modified) classes defined within rdf4j.  It is needed for two reasons:
+ * the KDL RDF Server, and by the (slightly modified) classes defined within rdf4j.  It is needed for two reasons:
  * <ul>
  * <li>In the original rdf4j there was only one rdf4j servlet "WorkbenchGateway" (with a associated family of classes) that 
  * connected to the RDF repository, so data about where the repository is could be defined in servlet init-param data for
- * that servlet. In the DPRR RDF Server there are two other servlets that also need access to the same data, and it made
- * better sense to move the data from there (since it was inaccessible to the two added DPRR servlets) and put it in a /WEB-INF file
- * "server.config".
- * <li>DPRR RDF data is stored in the file system directly, rather than made available through a separate rdf4j RDF server.
+ * that servlet. In the KDL RDF RDF Server there are two other servlets that also need access to the same data, and it made
+ * better sense to move the data from there (since it was inaccessible to the two added KDL RDF Server servlets) and put it in a /WEB-INF file
+ * "server.config".</li>
+ * <li>KDL Server RDF data is stored in the file system directly, rather than made available through a separate rdf4j RDF server.
  * When served this way, it has proven necessary to share a single connection between all servlets that need it, rather than
- * having each one open up its own.
+ * having each one open up its own.</li>
  * </ul>
  * 
  * @author John Bradley

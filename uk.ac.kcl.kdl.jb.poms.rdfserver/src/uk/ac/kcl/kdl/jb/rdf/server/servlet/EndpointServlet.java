@@ -57,7 +57,7 @@ import org.eclipse.rdf4j.workbench.util.QueryFactory;
 
 import uk.ac.kcl.kdl.jb.rdf.server.SharedRepositoryHandler;
 /**
- * the servlet that provides direct SPARQL endpoint services at http://romanrepublic.ac.uk/rdf/endpoint.
+ * the servlet that provides direct SPARQL endpoint services at .../rdf/endpoint.
  * It implements most of the query-oriented part of the SPARQL 1.1 spec at https://www.w3.org/TR/sparql11-protocol/.
  * 
  * @author John Bradley
